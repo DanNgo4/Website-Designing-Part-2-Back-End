@@ -1,0 +1,594 @@
+/* Author: Jugraj Singh
+Student id :- 104204262
+for the devops
+*/
+
+
+/* for the about page */
+* {
+  font-family: calabri, sans-serif
+}
+
+.intro {
+  position: relative;
+  margin: 0 auto;
+}
+
+.intro h1 {
+  text-align: left;
+}
+
+#terms {
+  text-align: left;
+}
+
+#content {
+  position: absolute;
+  bottom: 35%;
+  right: 5%;
+  background: rgba(105, 195, 223, 0.8);
+  color: rgb(0, 0, 0);
+  padding: 20px;
+}
+
+.title {
+  padding: 45px;
+  background-color: rgb(83, 160, 231);
+  text-align: center;
+}
+
+p.describe {
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  font-size: large;
+}
+
+article, .group h1, .group figure, #contact, .profile, .title h1, .profile h1 {
+  text-align: center;
+}
+
+.group5 img{
+  border: 10px solid black;
+}
+
+dl {
+  border: 15px solid #548ecf;
+  width: 70%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+dd {
+  float: left;
+  width: 30%;
+  padding: 0;
+  margin: 0;
+  margin-left: 5%;
+}
+
+dt {
+  text-align: center;
+}
+
+table.about, th, td {
+  border: 1px solid black;
+  border-spacing: 2px;
+}
+
+.time {
+  background-color: #9ce5f7;
+}
+
+.day {
+  background-color: #F7C15D;
+}
+
+/* Dan changed table's background color to hexadecimal value 16/04*/
+td.c04 {
+  background-color: #39A798;
+}
+
+td.c09 {
+  background-color: #8CB0FC;
+}
+
+td.c25 {
+  background-color: #E634CE;
+}
+
+td.c26 {
+  background-color: #C5B451;
+}
+
+.profile {
+  position: relative;
+  color: black;
+}
+
+.pfp td {
+  border: hidden;
+}
+
+.button {
+  border: 4px solid #467fc0;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition-duration: 0.8s;
+}
+
+.button1:hover {
+  background-color: #467fc0;
+  color: white;
+}
+
+#swin {
+  height: 20%;
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+}
+        /* adding the picture motion effect */
+        .container {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+          background-color: rgb(254, 254, 254);
+          gap: 0.9em;
+          margin: 10px;
+          padding: 5px;
+          border: 2px solid rgb(248, 244, 243);
+          text-align: center;
+          border: 15px solid #548ecf;
+
+      }
+      #section01 , #section02 ,#section03 ,#section04 ,#section05{
+      background-color: rgb(242, 242, 255);
+      }
+
+      .profiledp01{
+          margin: 10px;
+          height: 267px;
+          width: 200px ;
+          aspect-ratio:4/3;
+
+      }
+      section {
+          width: 50%;
+          height: 50%;
+          margin: 0.5em;
+
+      }
+      section:hover{
+          width: 100%;
+          height: 100%;
+          margin: 0.3em;
+      }
+
+      .profiledp01:hover{
+          width: 200px;
+           /* picture motion  */
+      }
+      /*  job apply cards CSs  */
+      #cardgrid01{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 10px;
+        margin: 2em;
+
+    }
+
+
+    .cards{
+        background-color: white;
+        padding: 1rem;
+        /* border: 1px solid #777; */
+        border-radius: .40rem;
+        box-shadow: 2px 3px 10px hsl(216, 15%, 13%);
+        overflow: hidden;
+
+
+
+    }
+    .cardheader{
+        font-size: 1.5rem;
+        margin-bottom: .5rem;
+        text-align: center;
+        padding-top: 1.25rem;
+
+    }
+    .cardheader.card-image{
+        overflow: hidden;
+
+    }
+    .cardheader.card-image > img{
+        display: block;
+        width: 100%;
+        aspect-ratio: 10/5;
+        object-fit: cover;
+        object-position: center;
+        border-radius: .30rem;
+        transition: 200ms transform ease-in-out ;
+
+    }
+    .cards:hover > .cardheader.card-image > img{
+        transform: scale(1.025);
+
+    }
+
+    .cardbody{
+        font-size: 1.5rem;
+        margin-bottom: .5rem;
+
+    }
+    .cardfooter{
+        margin-top: 1rem ;
+    }
+    /* --color: hsl(200, 50% , 50%) ; as var(--color) */
+    /* button for the apply button here */
+    .btn{
+        --color: hsl(196, 75%, 45%) ;
+        background-color: var(--color);
+        color: azure;
+        border: none;
+        font-size: 1rem;
+        padding: .5rem .75rem;
+        border: none;
+        border-radius: .9rem;
+        /* cursor: pointer; to get a cursor when you go the following  */
+        cursor: pointer;
+    }
+
+    .btn a {
+      text-decoration: none;
+      color: azure;
+    }
+
+    .btn:hover{
+        background-color: hsl(200, 50% , 80%);
+        color: blue;
+    }
+
+/* for header  */
+.NavgationBar ul {
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  background-color: #4267B2;
+
+}
+
+.NavgationBar li {
+  float: left;
+}
+
+.NavgationBar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
+.NavgationBar li a:hover {
+  background-color: #898F9C;
+}
+
+.BodyContent1 {
+  background-color: #D3D3D3;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-left: 5%;
+  padding-bottom: 1%;
+  padding-right: 5%;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+footer {
+  text-align: left;
+  padding: 1%;
+  background-color: #4267B2;
+  color: white;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+/* header ended  */
+
+/* Footer  */
+
+footer a {
+  color: white;
+}
+
+footer a:hover{
+  color: #898F9C;
+}
+
+#footerlinks {
+  font-size: 80%;
+  text-decoration: none;
+}
+
+#footernavigation {
+  word-spacing: 50px;
+}
+
+table {
+  border-spacing: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Dan put these footer's rules from about.css */
+.follow {
+  bottom: -20px;
+  text-align: right;
+  text-decoration: none;
+}
+
+.follow a {
+  text-decoration: none;
+}
+/* index page */
+
+.IndexBanner {
+  box-shadow: 2px 4px 8px 3px rgba(96, 23, 223, 0.2), 2px 4px 8px 3px rgba(56, 29, 230, 0.19) ;
+  width: 100%;
+  display: block;
+  border-radius: 1em ;
+}
+
+#HiringBanner ,HiringBanner02{
+  width: 100%;
+}
+
+#HiringBanner td {
+  width: 100%;
+  background-color: orangered;
+  color: white;
+  padding: 2%;
+}
+
+#HiringBanner h2, p{
+  margin: 0;
+}
+
+#HiringBanner a{
+  text-decoration: underline;
+  color: white;
+}
+
+.HiringBanner-box{
+  border-radius: 0.9em;
+  border: solid lavenderblush 2px;
+  box-shadow: #073468 2px 2px 18px;
+  text-align: center;
+
+}
+
+.p-index{
+  text-align: center;
+}
+
+/* for apply page  */
+/* algin all the text in centre */
+
+.BodyContent{
+ background-color: #467fc0;
+ margin-bottom: 2em;
+
+}
+#applybody{
+  background-color: rgb(116, 157, 215);
+  width: auto;
+}
+.heading-apply{
+  text-align: center;
+  border: 2px solid rgb(32, 32, 216);
+  padding: 3px;
+  cursor: pointer;
+  background-color: #1560b6;
+  font-family:monospace ,sans-serif;
+  transition: 200ms transform eas ;
+
+}
+.heading-apply:hover{
+  background-color: rgb(7, 7, 67);
+  color: whitesmoke;
+
+}
+
+.BodyContent , label , input{
+  padding: 2px;
+  margin: 2px;
+
+}
+.heading-apply , fieldset{
+  background-color: #cedae0;
+  margin: 0.6em;
+  padding: 0.2em;
+  box-shadow: #1560b6 2px 2px 6px;
+
+}
+.heading-apply , fieldset:hover{
+  background-color: #aebbc2;
+}
+
+/* button btn02 is for apply page  */
+.btn02, .btnapy{
+
+  margin: 3px;
+  padding: 2px;
+  --color: hsl(214, 85%, 35%) ;
+  background-color: var(--color);
+  color: azure;
+  border: none;
+  font-size: 1rem;
+  padding: .5rem .75rem;
+  border: none;
+  border-radius: .9rem;
+  /* cursor: pointer; to get a cursor when you go the following  */
+  cursor: pointer;
+}
+
+
+
+.btn02 , .btnapy:hover{
+  background-color: hsl(200, 89%, 36%);
+  color: rgb(1, 1, 33);
+}
+
+
+/* index page */
+.imagemotion{
+  width: 200px;
+  height: 250px;
+  padding-top: 4px;
+  aspect-ratio: 2/2;
+  border-radius: 2em;
+
+}
+/* index page  */
+
+
+
+
+.heading-index{
+  text-align: center;
+  color: rgb(51, 27, 27);
+  background-color: orange ;
+}
+
+
+#applybutton{
+  margin: 20px;
+  border: 4px solid #467fc0;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  object-position: center;
+  transition-duration: 0.8s;
+}
+
+
+#applybutton:hover {
+  background-color: #467fc0;
+  color: white;
+}
+
+
+
+
+.jobsheading{
+  width: 100%;
+  text-align: center;
+  border: 2px solid cornflowerblue;
+  border-color: #073468;
+  border-radius: 2em;
+}
+.jobsheading , h2{
+  background-color: #073468;
+  color: white;
+}
+
+.jobcontent h1{text-align: center;
+  font-size: 45px;
+  }
+.jobcontent h2{ text-align: center;
+  background-color: #4267B2;
+  color: white;
+  font-size: 30px;
+  }
+.jobcontent h3{  text-align: left;
+  padding-left: 4%;
+  font-size: 20px;
+  background-color: #C0C0C0;
+ color: white;
+}
+.jobcontent h4{ text-align: left;
+font-size:15px;
+}
+.jobcontent table, th, td { text-align: center;
+  border: 3px solid black;
+  border-collapse: collapse;
+}
+.jobcontent img {
+  width: 10px;
+  margin-top: -25px;
+  float: left;
+}
+
+#applybutton {
+  display: block;
+  padding-left: 7%;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #4267B2;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
+}
+
+#applybutton:hover {
+  transform: scale(1.1);
+}
+
+.comment-box {
+max-width: 400px;
+padding: 30px;
+border-radius: 10px;
+}
+
+.comment-box form {
+display: grid;
+gap: 10px;
+}
+
+.comment-box input[type="text"],
+.comment-box textarea {
+padding: 10px;
+font-size: 16px;
+border: none;
+border-radius: 5px;
+box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+.comment-box button[type="submit"] {
+font-size: 18px;
+font-weight: bold;
+color: #fff;
+background-color: #4267B2;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.2s ease-in-out;
+}
+
+.comment-box button[type="submit"]:hover {
+background-color: #4267B2;
+}
+
+
+
+
+.skills-section{
+width: 100%;
+height: auto;
+}
+
