@@ -17,12 +17,8 @@
   <div class="jobcontent">
 
         <section >
-
-
-
             <br>
-                  <h2 class="jobsheading">DevOPs Engineer </h2>
-
+            <h2 class="jobsheading">DevOPs Engineer </h2>
         </section>
 
   <table style="width:100%">
@@ -167,7 +163,7 @@ Mainframe monitoring.</p>
           <h3>Technical skills</h3>
         <aside>
            <ul>
-                     <li> APIs</li>
+                     <li>APIs</li>
                      <li>AWS</li>
                      <li>Azure</li>
                      <li>Docker</li>
