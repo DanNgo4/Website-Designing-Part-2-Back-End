@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta name="description" content="HR manager queries">
+        <meta name="keywords" content="PHP, MySql, HTML">
+    <title>EOI Management</title>
+    <link rel="stylesheet" href="manage.css">
+    <style>
+        body {
+            background-color: #f2f7fd;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #7FB3D5     ;
+            font-size: 48px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        h2 {
+            color: #34495E  ;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            animation: slide-in 0.5s ease;
+        }
+        
+        label {
+            display: inline-block;
+            width: 120px;
+            font-weight: bold;
+            color: #555555;
+            font-size: 20px;
+        }
+        
+        input[type="text"],
+        input[type="submit"] {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #85C1E9;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+        
+        input[type="submit"] {
+            background-color: #5499C7  ;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #F4D03F;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #cccccc;
+        }
+        
+        @keyframes slide-in {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>EOI Management</h1>
+
+        <h2>List EOIs</h2>
+        <form action="manage.php" method="GET">
+    <input type="hidden" name="action" value="list_all">
+    <label for="sort_field">Sort By:</label>
+    <select name="sort_field" id="sort_field">
+        <option value="EOInumber">EOI Number</option>
+        <option value="job_reference">Job Reference</option>
+        <option value="first_name">First Name</option>
+        <option value="last_name">Last Name</option>
+        <option value="status">Status</option>
+    </select>
+    <br>
+    <input type="submit" value="List EOIs">
+</form>
+       <hr> <!--This is horizon-->
+        <h2>List EOIs For A Particular Position</h2>
+<form action="manage.php" method="GET" class="position-form">
+    <input type="hidden" name="action" value="list_by_position">
+        <label for="job_reference">Job Reference:</label>
+        <input type="text" name="job_reference" id="job_reference">
+        <input type="submit" value="List EOIs for Position">
+</form>
+         <hr> <!--This is horizon-->
+        <h2>List EOIs For A Particular Applicant</h2>
+        <form action="manage.php" method="GET">
+            <input type="hidden" name="action" value="list_by_applicant">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" id="first_name">
+            <br>
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" id="last_name">
+            <br>
+            <input type="submit" value="List EOIs for Applicant">
+        </form>
+       <hr> <!--This is horizon-->
+        <h2>Delete EOIs With A Specified Job Reference Number</h2>
+        <form action="manage.php" method="GET">
+            <input type="hidden" name="action" value="delete_by_position">
+            <label for="job_reference_delete">Job Reference:</label>
+            <input type="text" name="job_reference" id="job_reference_delete">
+            <input type="submit" value="Delete EOIs">
+        </form>
+       <hr> <!--This is horizon-->
+        <h2>Change The Status Of An EOI</h2>
+        <form action="manage.php" method="GET">
+            <input type="hidden" name="action" value="change_status">
+            <label for="eoi_number">EOI Number:</label>
+            <input type="text" name="eoi_number" id="eoi_number">
+            <br>
+            <label for="status">Status:</label>
+            <input type="text" name="status" id="status">
+            <br>
+            <input type="submit" value="Change Status">
+        </form>
+    </div>
+    <?php
+// Database connection
+//waiting for connection variables "setting.php"
+$host = "   ";
+$username = "   ";
+$password = "    ";
+$database = "   ";
+
+$conn = new mysqli($host, $username, $password, $database);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Function to sanitize user input
+function sanitizeInput($input)
+{
+    // Perform sanitization here (e.g., trim, remove HTML control characters, etc.)
+    return $input;
+}
+
+// List all EOIs
+function listAllEOIs($conn, $sortField)
+{
+    $sortField = sanitizeInput($sortField);
+    $sql = "SELECT * FROM eoi ORDER BY $sortField";
+    $result = $conn->query($sql);
+
+    // Display the results
+    if ($result->num_rows > 0) {
+        echo "<h2>All EOIs:</h2>";
+        echo "<table>";
+        echo "<tr><th>EOInumber</th><th>Job Reference</th><th>First Name</th><th>Last Name</th><th>Status</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["job_reference"] . "</td><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["status"] . "</td></tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "No EOIs found.";
+    }
+}
+// List EOIs for a particular position (given a job reference number)
+function listEOIsForPosition($conn, $jobReference)
+{
+    $jobReference = sanitizeInput($jobReference);
+    $sql = "SELECT * FROM eoi WHERE job_reference = '$jobReference'";
+    $result = $conn->query($sql);
+
+    // Display the results
+    if ($result->num_rows > 0) {
+        echo "<h2>EOIs for Job Reference: $jobReference</h2>";
+        echo "<table>";
+        echo "<tr><th>EOInumber</th><th>Job Reference</th><th>First Name</th><th>Last Name</th><th>Status</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["job_reference"] . "</td><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["status"] . "</td></tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "No EOIs found for Job Reference: $jobReference";
+    }
+}
+
+// List EOIs for a particular applicant given their first name, last name, or both
+function listEOIsForApplicant($conn, $firstName, $lastName)
+{
+    $firstName = sanitizeInput($firstName);
+    $lastName = sanitizeInput($lastName);
+
+    $sql = "SELECT * FROM eoi WHERE first_name LIKE '%$firstName%' AND last_name LIKE '%$lastName%'";
+    $result = $conn->query($sql);
+
+    // Display the results
+    if ($result->num_rows > 0) {
+        echo "<h2>EOIs for Applicant: $firstName $lastName</h2>";
+        echo "<table>";
+        echo "<tr><th>EOInumber</th><th>Job Reference</th><th>First Name</th><th>Last Name</th><th>Status</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["job_reference"] . "</td><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["status"] . "</td></tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "No EOIs found for Applicant: $firstName $lastName";
+    }
+}
+
+// Delete all EOIs with a specified job reference number
+function deleteEOIsWithJobReference($conn, $jobReference)
+{
+    $jobReference = sanitizeInput($jobReference);
+    $sql = "DELETE FROM eoi WHERE job_reference = '$jobReference'";
+    $result = $conn->query($sql);
+
+    if ($result) {
+        echo "EOIs with Job Reference: $jobReference have been deleted.";
+    } else {
+        echo "Failed to delete EOIs with Job Reference: $jobReference";
+    }
+}
+
+// Change the Status of an EOI
+function changeEOIStatus($conn, $eoiNumber, $status)
+{
+    $eoiNumber = sanitizeInput($eoiNumber);
+    $status = sanitizeInput($status);
+
+    $sql = "UPDATE eoi SET status = '$status' WHERE EOInumber = $eoiNumber";
+    $result = $conn->query($sql);
+
+    if ($result) {
+        echo "EOI $eoiNumber status changed to $status.";
+    } else {
+        echo "Failed to change EOI $eoiNumber status.";
+    }
+}
+
+// Check the requested action and execute the appropriate query
+if (isset($_GET['action'])) {
+    switch ($_GET['action']) {
+        case 'list_all':
+            $sortField = isset($_GET['sort_field']) ? $_GET['sort_field'] : 'EOInumber';
+            listAllEOIs($conn, $sortField);
+            break;
+        case 'list_by_position':
+            // Handle list EOIs by position action
+            break;
+        case 'list_by_applicant':
+            // Handle list EOIs by applicant action
+            break;
+        case 'delete_by_position':
+            // Handle delete EOIs by position action
+            break;
+        case 'change_status':
+            // Handle change EOI status action
+            break;
+        default:
+            echo "Invalid action.";
+            break;
+    }
+}
+// Close the database connection
+$conn->close();
+?>
+</body>
+</html>
