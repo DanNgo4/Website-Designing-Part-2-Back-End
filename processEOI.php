@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>processEOI.php</title>
+    <title>processEOI</title>
 </head>
 <body>
     <?php
@@ -38,84 +38,84 @@ require_once ("settings.php");
     if (isset($_POST["job_reference"])) {
         $job_reference = sanitise_input($_POST["job_reference"]);
     } else {
-        header("location: apply.html");
+        header("location: apply.php");
         exit;
     }
 
     if (isset($_POST["firstname"])) {
       $firstname = sanitise_input($_POST["firstname"]);
   } else {
-      header("location: apply.html");
+      header("location: apply.php");
       exit;
   }
 
   if (isset($_POST["lastname"])) {
     $lastname = sanitise_input($_POST["lastname"]);
 } else {
-    header("location: apply.html");
+    header("location: apply.php");
     exit;
 }
 
 if (isset($_POST["dob"])) {
   $dob = sanitise_input($_POST["dob"]);
 } else {
-  header("location: apply.html");
+  header("location: apply.php");
   exit;
 }
 
 if (isset($_POST["gender"])) {
   $gender = sanitise_input($_POST["gender"]);
 } else {
-  header("location: apply.html");
+  header("location: apply.php");
   exit;
 }
 
 if (isset($_POST["street_address"])) {
   $street_address = sanitise_input($_POST["street_address"]);
 } else {
-  header("location: apply.html");
+  header("location: apply.php");
   exit;
 }
 
 if (isset($_POST["suburb"])) {
 $suburb = sanitise_input($_POST["suburb"]);
 } else {
-  header("location: apply.html");
+  header("location: apply.php");
   exit;
 }
 
 if (isset($_POST["state"])) {
   $state = sanitise_input($_POST["state"]);
 } else {
-  header("location: apply.html");
+  header("location: apply.php");
   exit;
 }
 
 if (isset($_POST["postcode"])) {
   $postcode = sanitise_input($_POST["postcode"]);
 } else {
-  header("location: apply.html");
+  header("location: apply.php");
   exit;
 }
 
 if (isset($_POST["email"])) {
   $email = sanitise_input($_POST["email"]);
 } else {
-  header("location: apply.html");
+  header("location: apply.php");
   exit;
 }
 
 if (isset($_POST["phone_number"])) {
   $phone_number = sanitise_input($_POST["phone_number"]);
 } else {
-  header("location: apply.html");
+  header("location: apply.php");
   exit;
 }
 
 if (isset($_POST["other_skills"])) {
   $other_skills = sanitise_input($_POST["other_skills"]);
 } else {
-  header("location: apply.html");
+  header("location: apply.php");
   exit;
 }
 
@@ -200,7 +200,8 @@ if (empty($dob)) {
 
   if ($stmt->execute()) {
     // Retrieve the auto-generated EOInumber
-    $eoi_number = $stmt->insert_id
+    $eoi_number = $stmt->insert_id;
   }
+?>
 </body>
 </html>
