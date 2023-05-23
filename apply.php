@@ -20,7 +20,7 @@
 <!--h3{text-align: center ; color: aqua; background-color: blue; font-weight: bold; font-size: 2em;}-->
   <h3 class="heading-apply">Apply With Us!</h3>
 
-    <form method="post" action="http://mercury.swin.edu.au/it000000/formtest.php">
+    <form method="post" action="processEOI.php">
         <!--fieldset{background-color: lightgrey;}-->
         <fieldset>
             <!--Job reference with a text area max inputs 5 alphanumeric characters-->
