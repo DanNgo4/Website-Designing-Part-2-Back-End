@@ -1,7 +1,7 @@
-<?php
+<?php 
 session_start();
-if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
-?>
+if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +13,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
         <link rel="icon" type="image/x-icon" href="images/soe_logo_transparent_small.png">
 </head>
 <body>
+<?php
+include ("Header.inc");
+?>
         <h1>EOI Management</h1>
-
         <h2>List EOIs</h2>
         <form action="manage.php" method="GET">
     <input type="hidden" name="action" value="list_all">
@@ -70,10 +72,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
             <input type="submit" value="Change Status">
         </form>
 <?php
-    include ("Header.inc");
     // Database connection
     require_once("settings.php");
-    $conn = @mysqli_connect ( $host,$user, $pwd, $sql_db);
+    $conn = @mysqli_connect( $host,$user, $pwd, $sql_db);
     //Checks if connection is successful
     if (!$conn) {
         //displays an error message 
@@ -215,15 +216,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
         }
     // Close the database connection
     $conn->close();
-
     include 'Footer.inc'
 ?>
 </body>
 </html>
-<?php
+<?php 
 }
-else {
-    header("Location: phpenhancements.php");
-    exit();
+else{
+     header("Location: phpenhancements.php?error");
+     exit();
 }
-?>
+ ?>
