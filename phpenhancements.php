@@ -15,6 +15,7 @@
 ?>
     <form action = "manage.php" method = "POST">
         <h1>Welcome Manager</h1>
+        <label>Name</label>
     </form>
 <?php
     include 'Footer.inc'
