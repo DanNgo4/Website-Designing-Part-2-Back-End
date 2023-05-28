@@ -16,9 +16,9 @@
 <p id="footerlinks">
   <a href="mailto:Contactus@SOECompany.com">Contact us</a>
   <br>
-  <a href="termsandconditions.html">Terms and Conditions</a>
+  <a href="termsandconditions.php">Terms and Conditions</a>
   <br>
-  <a href="about.html#MeetOurTeam">Contributors</a>
+  <a href="about.php#MeetOurTeam">Contributors</a>
 </p>
 
 
