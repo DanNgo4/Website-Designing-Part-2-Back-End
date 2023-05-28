@@ -111,12 +111,7 @@ if (isset($_POST["Phone_Number"])) {
     exit;
 }
 
-if (isset($_POST["OtherSkills"])) {
-    $OtherSkills = sanitise_input($_POST["OtherSkills"]);
-} else {
-    echo"Write Other Skills";
-    exit;
-}
+
 $Job_Reference = sanitise_input($Job_Reference);
 $First_Name = sanitise_input($First_Name);
 $Last_Name = sanitise_input($Last_Name);
@@ -234,12 +229,7 @@ if (empty($Phone_Number)) {
     $errMsg .= "<p>You must enter a valid phone number (10 digits, no spaces or special characters).</p>";
 }
 
-if (isset($_POST["Otherskills"])) {
-    $Otherskills = $_POST["Otherskills"];
-} 
-if ($Otherskills == "checked" && empty($_POST["OtherSkills"])) {
-    $errMsg .= "<p>You must enter Other Skills.</p>";
-}
+
 
 // Create the EOI table if it doesn't exist
 $createTableQuery = "CREATE TABLE IF NOT EXISTS EOI (
