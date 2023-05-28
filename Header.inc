@@ -9,5 +9,6 @@
       <li><a href="about.php#cardgrid01">Enhancements</a></li>
       <li><a href="about.php#MeetOurTeam">Profiles</a></li>
       <li><a href="mailto:104586973@student.swin.edu.au">Contact us</a></li>
+	 <li><a href="phpenhancements.php">Manager Login</a></li>
     </ul>
-  </div>
+</div>

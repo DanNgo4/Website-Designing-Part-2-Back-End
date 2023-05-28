@@ -68,17 +68,13 @@
     </div>
     <?php
 // Database connection
-//waiting for connection variables "setting.php"
-$host = "   ";
-$username = "   ";
-$password = "    ";
-$database = "   ";
-
-$conn = new mysqli($host, $username, $password, $database);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+require_once("settings.php");
+$conn = @mysqli_connect ( $host,$user, $pwd, $sql_db);
+//Checks if connection is successful
+if (!$conn) {
+    //displays an error message 
+    echo "<p>Database connection failure</p>";
+} 
 // Function to sanitize user input
 function sanitizeInput($input)
 {
