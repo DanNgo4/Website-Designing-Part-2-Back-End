@@ -11,6 +11,14 @@ session_start();
 
     // Manager login validation
     if ((isset($_POST["name"])) and (isset($POST["pwd"]))) {
+        
+        function sanitizeInput($input) {
+            $input = trim($input);
+            $input = stripslashes($input);
+            $input = htmlspecialchars($input);
+            return $input;
+}
+
         $name = sanitizeInput($_POST["name"]);
         $pwd  = sanitizeInput($_POST["pwd"]);
 
@@ -24,7 +32,7 @@ session_start();
         }
         else {
             $sql = "SELECT * FROM manager WHERE name = '$name' AND password = '$pwd'";
-            $res = @mysqli_query($conn, $sql);
+            $res = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($res) === 1) {
                 $row = mysqli_fetch_assoc($res);
