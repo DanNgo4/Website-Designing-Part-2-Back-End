@@ -7,17 +7,11 @@
     <meta name="author" content="Mixed Munde">
   <title>COS10026 Computing Technology Inquiry Project</title>
   <link rel="stylesheet" href="styles/style.css">
-
-
-
-
 </head>
 <body>
-  <header>
 <?php 
 	include 'Header.inc'; 
 ?>
-  </header>
 <main>
   <div class="BodyContent">
     <table></table>
@@ -26,7 +20,6 @@
         <br>
    </body>
 </main>
-
 <?php 
 	include 'Footer.inc'; 
 ?>
