@@ -5,10 +5,14 @@
         <meta name="description" content="HR manager queries">
         <meta name="keywords" content="PHP, MySql, HTML">
     <title>EOI Management</title>
-    <link rel="stylesheet" href="manage.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/x-icon" href="images/soe_logo_transparent_small.png">
 </head>
 <body>
-    <div class="form-container">
+<?php
+    include 'Header.inc'
+
+?>
         <h1>EOI Management</h1>
 
         <h2>List EOIs</h2>
@@ -65,8 +69,7 @@
             <br>
             <input type="submit" value="Change Status">
         </form>
-    </div>
-    <?php
+<?php
 // Database connection
 require_once("settings.php");
 $conn = @mysqli_connect ( $host,$user, $pwd, $sql_db);
@@ -202,6 +205,8 @@ if (isset($_GET['action'])) {
 }
 // Close the database connection
 $conn->close();
+
+include 'Footer.inc'
 ?>
 </body>
 </html>

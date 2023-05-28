@@ -15,6 +15,13 @@
 ?>
     <form action = "manage.php" method = "POST">
         <h1>Welcome Manager</h1>
+            <label>Name</label>
+            <input type = "text" name = "name" placeholder="User Name"></br>
+
+            <label>Password</label>
+            <input type = "password" name = "pwd" placeholder = "Password"></br>
+
+            <button type = "submit">Login</button>
     </form>
 <?php
     include 'Footer.inc'
