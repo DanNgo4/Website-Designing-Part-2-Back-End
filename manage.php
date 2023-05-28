@@ -69,7 +69,7 @@
     <?php
 // Database connection
 require_once("settings.php");
-$conn = @mysqli_connect ( $host,$user, $pwd, $sql_db)
+$conn = @mysqli_connect ( $host,$user, $pwd, $sql_db);
 //Checks if connection is successful
 if (!$conn) {
     //displays an error message 
