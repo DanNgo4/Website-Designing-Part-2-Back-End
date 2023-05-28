@@ -9,7 +9,7 @@
   <meta name="author"      content="Dan Ngo" />
   <title>About SOE</title>
   <link rel="stylesheet" href="styles/style.css">
-  <link rel="icon" type="image/x-icon" href="images/logo_transparent_small.png"><!-- Dan added this favicon 12/04 -->
+  <link rel="icon" type="image/x-icon" href="images/soe_logo_transparent_small.png"><!-- Dan added this favicon 12/04 -->
 </head>
 
 <body>
