@@ -69,6 +69,14 @@
             <input type="submit" value="Change Status">
         </form>
 <?php
+include ("Header.inc");
+// Database connection
+require("settings.php");
+//Checks if connection is successful
+if (!$conn) {
+    //displays an error message 
+    echo "<p>Database connection failure</p>";
+} 
 // Function to sanitize user input
 function sanitizeInput($input)
 {
