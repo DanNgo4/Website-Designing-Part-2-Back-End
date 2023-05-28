@@ -16,6 +16,17 @@
     if ((isset($_POST["name"])) and (isset($POST["pwd"]))) {
         $name = sanitizeInput($_POST["name"]);
         $pwd  = sanitizeInput($_POST["name"]);
+
+        if (empty($name)) {
+            header("Location: phpenhancements.php?error=Name is required.");
+            exit();
+        }
+        elseif (empty($pwd)){
+            ;
+        }
+        else {
+            echo "<p>Login successful !</p>";
+        }
     }
     else {
         header("Location: phpenhancements.php?error");
