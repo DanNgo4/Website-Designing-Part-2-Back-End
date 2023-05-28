@@ -31,12 +31,12 @@
         <!--legend{font-family: serif ;color:black; font-size: 1.5em;}
 -->
         <legend class="heading-apply">Personal details</legend>
-	<p><label for="Firstname"> First Name</label>
+	<p><label for="First_Name"> First Name</label>
         <input type="text" name="First_Name" id="First_Name" Maxlength="20" pattern="[a-zA-Z]{1,20}" required="required">
 	</p>
     <!--ensure proper gap between labels-->
 	
-    <p><label for="Lastname">Last Name</label>
+    <p><label for="Last_Name">Last Name</label>
         <input type="text" name="Last_Name" id="Last_Name" maxlength="20" pattern="[A-Za-z]{1,20}" required="required">
         </p>
         <p><label for="dob">DOB</label>
@@ -64,17 +64,18 @@
             <fieldset>
                 <!--Gender with radio inputs-->
                 <legend class="heading-apply">Gender</legend>
-                <p><label for="Female">Female</label>
-			<input type="radio" value="Female" name="Gender" id="Female" required="required">
-			<label for="Male">Male</label>
-			<input type="radio" value="Male" name="Gender" id="Male">
-            <label for="TransGender">TransGender</label>
-			<input type="radio" value="TransGender" name="Gender" id="TransGender">
-            <label for="Nonbinary">Non Binary</label>
-			<input type="radio" value="Nonbinary" name="Gender" id="Nonbinary">
-            <label for="Others">Others</label>
-			<input type="radio" value="Others" name="Gender" id="Others">
-	 </p>
+            <p>
+                <label for="Female">Female</label>
+                <input type="radio" value="Female" name="Gender" id="Female">
+                <label for="Male">Male</label>
+                <input type="radio" value="Male" name="Gender" id="Male">
+                <label for="TransGender">TransGender</label>
+                <input type="radio" value="TransGender" name="Gender" id="TransGender">
+                <label for="Nonbinary">Non Binary</label>
+                <input type="radio" value="Nonbinary" name="Gender" id="Nonbinary">
+                <label for="Others">Others</label>
+                <input type="radio" value="Others" name="Gender" id="Others">
+	        </p>
             </fieldset>
             <fieldset>
                 <legend class="heading-apply">Contact Details</legend>
