@@ -40,84 +40,84 @@ $errMsg = ""; // Added variable to store error messages
 if (isset($_POST["Job_Reference"])) {
     $Job_Reference = sanitise_input($_POST["Job_Reference"]);
 } else {
-    header("location: apply.php");
+   echo"Invalid Job reference number";
     exit;
 }
 
 if (isset($_POST["First_Name"])) {
     $First_Name = sanitise_input($_POST["First_Name"]);
 } else {
-    header("location: apply.php");
+    echo"Invalid pattern for First Name ";
     exit;
 }
 
 if (isset($_POST["Last_Name"])) {
     $Last_Name = sanitise_input($_POST["Last_Name"]);
 } else {
-    header("location: apply.php");
+    echo"Invalid Last Name";
     exit;
 }
 
 if (isset($_POST["dob"])) {
     $dob = sanitise_input($_POST["dob"]);
 } else {
-    header("location: apply.php");
+    echo"Invalid  date 0f birth";
     exit;
 }
 
 if (isset($_POST["Gender"])) {
     $Gender = sanitise_input($_POST["Gender"]);
 } else {
-    header("location: apply.php");
+    echo"Select gender";
     exit;
 }
 
 if (isset($_POST["Street_Address"])) {
     $Street_Address = sanitise_input($_POST["Street_Address"]);
 } else {
-    header("location: apply.php");
+    echo"Invalid Street Address";
     exit;
 }
 
 if (isset($_POST["Suburb_Town"])) {
     $Suburb_Town = sanitise_input($_POST["Suburb_Town"]);
 } else {
-    header("location: apply.php");
+    echo"Invalid Suburb_Town";
     exit;
 }
 
 if (isset($_POST["State"])) {
     $State = sanitise_input($_POST["State"]);
 } else {
-    header("location: apply.php");
+    echo"Invalid State";
     exit;
 }
 
 if (isset($_POST["Postcode"])) {
     $Postcode = sanitise_input($_POST["Postcode"]);
 } else {
-    header("location: apply.php");
+    echo"Invalid Postcode";
     exit;
 }
 
 if (isset($_POST["Email_Address"])) {
     $Email_Address = sanitise_input($_POST["Email_Address"]);
 } else {
-    header("location: apply.php");
+    echo"Invalid Email Address";
     exit;
 }
 
 if (isset($_POST["Phone_Number"])) {
     $Phone_Number = sanitise_input($_POST["Phone_Number"]);
 } else {
-    header("location: apply.php");
+    echo"Invalid Phone Number";
     exit;
 }
 
 if (isset($_POST["OtherSkills"])) {
     $OtherSkills = sanitise_input($_POST["OtherSkills"]);
 } else {
-    header("location: apply.php");
+    echo"Write Other Skills";
     exit;
 }
 
@@ -204,6 +204,7 @@ if (empty($Postcode)) {
     $errMsg .= "<p>Postcode must be exactly 4 digits long.</p>";
   
 }
+
 // Match postcode with state
 $postcodeState = array(
   "3000" => "VIC",
@@ -245,32 +246,51 @@ if (empty($Phone_Number)) {
  
 // Create the EOI table if it doesn't exist
 $create_table_query = "CREATE TABLE IF NOT EXISTS EOI (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  Job_Reference VARCHAR(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  First_Name VARCHAR(20) NOT NULL,
-  Last_Name VARCHAR(20) NOT NULL,
-  dob DATE NOT NULL,
-  Gender VARCHAR(10) NOT NULL,
-  Street_Address VARCHAR(40) NOT NULL,
-  Suburb_Town VARCHAR(40) NOT NULL,
-  State VARCHAR(3) NOT NULL,
-  Postcode VARCHAR(4) NOT NULL,
-  Email_Address VARCHAR(255) NOT NULL,
-  Phone_Number VARCHAR(12),
-  OtherSkills TEXT,
+  `EOInumber` INT AUTO_INCREMENT PRIMARY KEY,
+  'Job_Reference' VARCHAR(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  'First_Name' VARCHAR(20) NOT NULL,
+  'Last_Name' VARCHAR(20) NOT NULL,
+  'dob' DATE NOT NULL,
+  'Gender' VARCHAR(10) NOT NULL,
+  'Street_Address' VARCHAR(40) NOT NULL,
+  'Suburb_Town' VARCHAR(40) NOT NULL,
+  'State' VARCHAR(3) NOT NULL,
+  'Postcode' VARCHAR(4) NOT NULL,
+  'Email_Address' VARCHAR(255) NOT NULL,
+  'Phone_Number' VARCHAR(12),
+  'OtherSkills' TEXT,
   UNIQUE KEY(Job_Reference)
 )";
 $conn->query($create_table_query);
 
 // Insert the EOI record into the table
-$insert_query = "INSERT INTO EOI (Job_Reference, first_name, last_name, dob, Gender, Street_Address, Suburb_Town, State , Postcode, Email_Address, Phone_Number, OtherSkills) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$insert_query = "INSERT INTO EOI (Job_Reference, First_Name, Last_Name, dob, Gender, Street_Address, Suburb_Town, State, Postcode, Email_Address, Phone_Number, OtherSkills) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($insert_query);
-$stmt->bind_param("ssssssssssss", $_POST["Job_Reference"], $_POST["first_name"], $_POST["last_name"], $_POST["dob"], $_POST["Gender"], $_POST["Street_Address"], $_POST["Suburb_Town"], $_POST["State"], $_POST["Postcode"], $_POST["Email_Address"], $_POST["Phone_Number"], $_POST["OtherSkills"]);
+
+$stmt->execute();
+
+
+$stmt->bind_param("ssssssssssss", $Job_Reference, $First_Name, $Last_Name, $dob, $Gender, $Street_Address, $Suburb_Town, $State, $Postcode, $Email_Address, $Phone_Number, $OtherSkills);
 
 if ($stmt->execute()) {
   // Retrieve the auto-generated EOInumber
-  $eoi_number = $stmt->insert_id;
+  $eoi_number = $conn->insert_id;
+
 }
+
+?>
+
+<!-- Display success message and EOI number -->
+<?php if (empty($errMsg)) : ?>
+  <h1>Success!</h1>
+  <p>Your Expression of Interest has been submitted.</p>
+  <p>Your EOI number is: <?php echo $eoi_number; ?></p>
+<?php else : ?>
+  <!-- Display error message -->
+  <h1>Error!</h1>
+  <?php echo $errMsg; ?>
+<?php endif; 
+mysqli_close($conn);
 ?>
 </body>
 </html>
