@@ -11,8 +11,8 @@
 <body>
 <?php
     include 'Header.inc'
+
 ?>
-    <div class="form-container">
         <h1>EOI Management</h1>
 
         <h2>List EOIs</h2>
@@ -69,8 +69,7 @@
             <br>
             <input type="submit" value="Change Status">
         </form>
-    </div>
-    <?php
+<?php
 // Database connection
 require_once("settings.php");
 $conn = @mysqli_connect ( $host,$user, $pwd, $sql_db);
