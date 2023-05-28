@@ -141,7 +141,7 @@ if (empty($Job_Reference)) {
     $errMsg .= "<p>Only five alphanumeric characters are allowed in the job reference number.</p>";
 }
 
-
+if (empty($First_Name)) {
     $errMsg .= "<p>You must enter your first name.</p>";
 } elseif (!preg_match("/^[a-zA-Z]{1,20}$/", $First_Name)) {
     $errMsg .= "<p>Only 20 alphabetic letters are allowed in your first name.</p>";
