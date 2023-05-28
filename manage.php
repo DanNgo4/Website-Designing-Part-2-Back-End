@@ -15,7 +15,19 @@
     // Manager login validation
     if ((isset($_POST["name"])) and (isset($POST["pwd"]))) {
         $name = sanitizeInput($_POST["name"]);
-        $pwd  = sanitizeInput($_POST["name"]);
+        $pwd  = sanitizeInput($_POST["pwd"]);
+
+        if (empty($name)) {
+            header("Location: phpenhancements.php?error=Name is required");
+            exit();
+        }
+        elseif (empty($pwd)){
+            header("Location: phpenhancements.php?error=Password is required");
+            exit();
+        }
+        else {
+            echo "<p>Login successful !</p>";
+        }
     }
     else {
         header("Location: phpenhancements.php?error");
