@@ -12,6 +12,7 @@
 <?php
     include 'Header.inc';
 
+    // Manager login validation
     if ((isset($_POST["name"])) and (isset($POST["pwd"]))) {
         $name = $_POST["name"];
         $pwd  = $_POST["name"];
