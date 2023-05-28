@@ -2,7 +2,7 @@
 session_start();
     include ("Header.inc");
     // Database connection
-    require("settings.php");
+    include ("settings.php");
     //Checks if connection is successful
     if (!$conn) {
         //displays an error message 

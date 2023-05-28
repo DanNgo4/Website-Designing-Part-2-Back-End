@@ -10,7 +10,9 @@
 </head>
 <body>
 <?php
-    include ("Header.inc");
+session_start();
+include ("Header.inc");
+if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
 ?>
         <h1>EOI Management</h1>
 
@@ -69,7 +71,6 @@
             <input type="submit" value="Change Status">
         </form>
 <?php
-include ("Header.inc");
 // Database connection
 require("settings.php");
 //Checks if connection is successful
@@ -209,6 +210,11 @@ if (isset($_GET['action'])) {
 $conn->close();
 
 include 'Footer.inc'
+}
+else {
+    header("Location: phpenhancements.php");
+    exit();
+}
 ?>
 </body>
 </html>
