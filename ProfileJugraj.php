@@ -20,7 +20,7 @@
             <tr>
               <!-- Dan resized Daniel's pfp 11/04 -->
             <td><img id="profilephoto" src="images/JugrajPfp.jpg" alt="DanielHindmarshProfilePhoto"></td>
-            <td><h1>Jugraj Singh </h1>
+            <td><h1>Jugraj Singh</h1>
                 <hr>
                 <h2>DevOps Engineer And graphic designer</h2></td>
         </tr>
