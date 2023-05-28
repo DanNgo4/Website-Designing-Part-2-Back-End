@@ -67,15 +67,15 @@
                 <!--Gender with radio inputs-->
                 <legend class="heading-apply">Gender</legend>
                 <p><label for="Female">Female</label>
-			<input type="radio" value="Female" name="gender" id="Female" required="required">
+			<input type="radio" value="Female" name="Gender" id="Female" required="required">
 			<label for="Male">Male</label>
-			<input type="radio" value="Male" name="gender" id="Male">
-            <label for="Transgender">Transgender</label>
-			<input type="radio" value="Transgender" name="gender" id="Transgender">
+			<input type="radio" value="Male" name="Gender" id="Male">
+            <label for="TransGender">TransGender</label>
+			<input type="radio" value="TransGender" name="Gender" id="TransGender">
             <label for="Nonbinary">Non Binary</label>
-			<input type="radio" value="Nonbinary" name="gender" id="Nonbinary">
+			<input type="radio" value="Nonbinary" name="Gender" id="Nonbinary">
             <label for="Others">Others</label>
-			<input type="radio" value="Others" name="gender" id="Others">
+			<input type="radio" value="Others" name="Gender" id="Others">
 	 </p>
             </fieldset>
             <fieldset>

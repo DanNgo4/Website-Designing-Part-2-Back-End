@@ -35,22 +35,22 @@ require_once ("settings.php");
 
   // Validate and sanitize form inputs
  
-    if (isset($_POST["job_reference"])) {
-        $job_reference = sanitise_input($_POST["job_reference"]);
+    if (isset($_POST["Job_Reference"])) {
+        $Job_Reference = sanitise_input($_POST["Job_Reference"]);
     } else {
         header("location: apply.php");
         exit;
     }
 
-    if (isset($_POST["firstname"])) {
-      $firstname = sanitise_input($_POST["firstname"]);
+    if (isset($_POST["First_Name"])) {
+      $First_Name = sanitise_input($_POST["First_Name"]);
   } else {
       header("location: apply.php");
       exit;
   }
 
-  if (isset($_POST["lastname"])) {
-    $lastname = sanitise_input($_POST["lastname"]);
+  if (isset($_POST["Last_Name"])) {
+    $Last_Name = sanitise_input($_POST["Last_Name"]);
 } else {
     header("location: apply.php");
     exit;
@@ -63,94 +63,94 @@ if (isset($_POST["dob"])) {
   exit;
 }
 
-if (isset($_POST["gender"])) {
-  $gender = sanitise_input($_POST["gender"]);
+if (isset($_POST["Gender"])) {
+  $Gender = sanitise_input($_POST["Gender"]);
 } else {
   header("location: apply.php");
   exit;
 }
 
-if (isset($_POST["street_address"])) {
-  $street_address = sanitise_input($_POST["street_address"]);
+if (isset($_POST["Street_Address"])) {
+  $Street_Address = sanitise_input($_POST["Street_Address"]);
 } else {
   header("location: apply.php");
   exit;
 }
 
-if (isset($_POST["suburb"])) {
-$suburb = sanitise_input($_POST["suburb"]);
+if (isset($_POST["Suburb_Town"])) {
+$Suburb_Town = sanitise_input($_POST["Suburb_Town"]);
 } else {
   header("location: apply.php");
   exit;
 }
 
-if (isset($_POST["state"])) {
-  $state = sanitise_input($_POST["state"]);
+if (isset($_POST["State"])) {
+  $State = sanitise_input($_POST["State"]);
 } else {
   header("location: apply.php");
   exit;
 }
 
-if (isset($_POST["postcode"])) {
-  $postcode = sanitise_input($_POST["postcode"]);
+if (isset($_POST["Postcode"])) {
+  $Postcode = sanitise_input($_POST["Postcode"]);
 } else {
   header("location: apply.php");
   exit;
 }
 
-if (isset($_POST["email"])) {
-  $email = sanitise_input($_POST["email"]);
+if (isset($_POST["Email_Address"])) {
+  $Email_Address = sanitise_input($_POST["Email_Address"]);
 } else {
   header("location: apply.php");
   exit;
 }
 
-if (isset($_POST["phone_number"])) {
-  $phone_number = sanitise_input($_POST["phone_number"]);
+if (isset($_POST["Phone_Number"])) {
+  $Phone_Number = sanitise_input($_POST["Phone_Number"]);
 } else {
   header("location: apply.php");
   exit;
 }
 
-if (isset($_POST["other_skills"])) {
-  $other_skills = sanitise_input($_POST["other_skills"]);
+if (isset($_POST["OtherSkills"])) {
+  $OtherSkills = sanitise_input($_POST["OtherSkills"]);
 } else {
   header("location: apply.php");
   exit;
 }
 
-$job_reference = sanitise_input($job_reference);
-$firstname = sanitise_input($firstname);
-$lastname = sanitise_input($lastname);
+$Job_Reference = sanitise_input($Job_Reference);
+$First_Name = sanitise_input($First_Name);
+$Last_Name = sanitise_input($Last_Name);
 $dob = sanitise_input($dob);
-$gender = sanitise_input($gender);
-$street_address= sanitise_input($street_address);
-$suburb = sanitise_input($suburb);
-$state= sanitise_input($state);
-$postcode = sanitise_input($postcode);
-$email = sanitise_input($email);
-$phone_number = sanitise_input($phone_number);
-$other_skills = sanitise_input($other_skills);
+$Gender = sanitise_input($Gender);
+$Street_Address= sanitise_input($Street_Address);
+$Suburb_Town = sanitise_input($Suburb_Town);
+$State= sanitise_input($State);
+$Postcode = sanitise_input($Postcode);
+$Email_Address = sanitise_input($Email_Address);
+$Phone_Number = sanitise_input($Phone_Number);
+$OtherSkills = sanitise_input($OtherSkills);
 
 // Make sure all the required fields are filled otherwise displays error message
 $errMsg = "";
-   if (empty($job_reference)) {
+   if (empty($Job_Reference)) {
     $errMsg .= "<p>You must enter job reference number.</p>";
-} elseif (!preg_match("/^[a-zA-Z0-9]{5}$/", $job_reference)) {
+} elseif (!preg_match("/^[a-zA-Z0-9]{5}$/", $Job_Reference)) {
     $errMsg .= "<p>Only five alphanumeric characters allowed in job reference number.</p>";
 }
 
 $errMsg = "";
-   if (empty($firstname)) {
+   if (empty($First_Name)) {
     $errMsg .= "<p>You must enter your first name.</p>";
-} elseif (!preg_match("/^[a-zA-Z]{1,20}$/", $firstname)) {
+} elseif (!preg_match("/^[a-zA-Z]{1,20}$/", $First_Name)) {
     $errMsg .= "<p>Only 20 alpha letters allowed in your first name.</p>";
 }
   
 $errMsg = "";
-   if (empty($lastname)) {
+   if (empty($Last_Name)) {
     $errMsg .= "<p>You must enter your last name.</p>";
-} elseif (!preg_match("/^[a-zA-Z]{1,20}$/", $lastname)) {
+} elseif (!preg_match("/^[a-zA-Z]{1,20}$/", $Last_Name)) {
     $errMsg .= "<p>Only 20 alpha letters allowed in your first name.</p>";
 }
 
@@ -170,33 +170,52 @@ if (empty($dob)) {
     }
 }
 
+if (empty($Gender)) {
+  $errors[] = "Gender is required.";
+} else {
+  // Radio input has a value, you can proceed with further processing
+  $selectedGender = $_POST['Gender'];
+  }
 
+$errMsg = "";
+   if (empty($Street_Address)) {
+    $errMsg .= "<p>You must enter your Street address.</p>";
+} elseif (!preg_match("/^[a-zA-Z]{1,40}$/", $Street_Address)) {
+    $errMsg .= "<p>Only 40 alpha letters allowed in your Street address.</p>";
+}
+
+$errMsg = "";
+   if (empty($Suburb_Town))) {
+    $errMsg .= "<p>You must enter your suburb or town.</p>";
+} elseif (!preg_match("/^[a-zA-Z]{1,40}$/", $Suburb_Town)) {
+    $errMsg .= "<p>Only 40 alpha letters allowed in suburb or town .</p>";
+}
 
 
   
 // Create the EOI table if it doesn't exist
   $create_table_query = "CREATE TABLE IF NOT EXISTS EOI (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    job_reference VARCHAR(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-    first_name VARCHAR(20) NOT NULL,
-    last_name VARCHAR(20) NOT NULL,
+    Job_Reference VARCHAR(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+    First_Name VARCHAR(20) NOT NULL,
+    Last_Name VARCHAR(20) NOT NULL,
     dob DATE NOT NULL,
-    gender VARCHAR(10) NOT NULL,
-    street_address VARCHAR(40) NOT NULL,
-    suburb VARCHAR(40) NOT NULL,
-    state VARCHAR(3) NOT NULL,
-    postcode VARCHAR(4) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(12),
-    other_skills TEXT,
-    UNIQUE KEY(job_reference)
+    Gender VARCHAR(10) NOT NULL,
+    Street_Address VARCHAR(40) NOT NULL,
+    Suburb_Town_Town VARCHAR(40) NOT NULL,
+    State VARCHAR(3) NOT NULL,
+    Postcode VARCHAR(4) NOT NULL,
+    Email_Address VARCHAR(255) NOT NULL,
+    Phone_Number VARCHAR(12),
+    OtherSkills TEXT,
+    UNIQUE KEY(Job_Reference)
   )";
   $conn->query($create_table_query);
 
   // Insert the EOI record into the table
-  $insert_query = "INSERT INTO EOI (job_reference, first_name, last_name, dob, gender, street_address, suburb, state , postcode, email, phone_number, other_skills) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  $insert_query = "INSERT INTO EOI (Job_Reference, first_name, last_name, dob, Gender, Street_Address, Suburb_Town, State , Postcode, Email_Address, Phone_Number, OtherSkills) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
   $stmt = $conn->prepare($insert_query);
-  $stmt->bind_param("ssssssssssss", $_POST["job_reference"], $_POST["first_name"], $_POST["last_name"], $_POST["dob"], $_POST["gender"], $_POST["street_address"], $_POST["suburb"], $_POST["state"], $_POST["postcode"], $_POST["email"], $_POST["phone_number"], $_POST["other_skills"]);
+  $stmt->bind_param("ssssssssssss", $_POST["Job_Reference"], $_POST["first_name"], $_POST["last_name"], $_POST["dob"], $_POST["Gender"], $_POST["Street_Address"], $_POST["Suburb_Town"], $_POST["State"], $_POST["Postcode"], $_POST["Email_Address"], $_POST["Phone_Number"], $_POST["OtherSkills"]);
 
   if ($stmt->execute()) {
     // Retrieve the auto-generated EOInumber
