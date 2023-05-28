@@ -5,9 +5,13 @@
         <meta name="description" content="HR manager queries">
         <meta name="keywords" content="PHP, MySql, HTML">
     <title>EOI Management</title>
-    <link rel="stylesheet" href="manage.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/x-icon" href="images/soe_logo_transparent_small.png">
 </head>
 <body>
+<?php
+    include 'Header.inc'
+?>
     <div class="form-container">
         <h1>EOI Management</h1>
 
@@ -202,6 +206,8 @@ if (isset($_GET['action'])) {
 }
 // Close the database connection
 $conn->close();
+
+include 'Footer.inc'
 ?>
 </body>
 </html>
