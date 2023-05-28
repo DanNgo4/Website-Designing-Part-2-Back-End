@@ -10,8 +10,17 @@
 </head>
 <body>
 <?php
-    include 'Header.inc'
+    include 'Header.inc';
 
+    // Manager login validation
+    if ((isset($_POST["name"])) and (isset($POST["pwd"]))) {
+        $name = sanitizeInput($_POST["name"]);
+        $pwd  = sanitizeInput($_POST["name"]);
+    }
+    else {
+        header("Location: phpenhancements.php?error");
+        exit();
+    }
 ?>
         <h1>EOI Management</h1>
 
@@ -82,6 +91,9 @@ if (!$conn) {
 function sanitizeInput($input)
 {
     // Perform sanitization here (e.g., trim, remove HTML control characters, etc.)
+    $input = trim($input);
+    $input = stripslashes($input);
+    $input = htmlspecialchars($input);
     return $input;
 }
 

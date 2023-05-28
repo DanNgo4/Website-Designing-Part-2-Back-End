@@ -11,10 +11,11 @@
   <a href="about.php">About</a>
   <a href="about.php#cardgrid01">Enhancements</a>
   <a href="about.php#MeetOurTeam">Profiles</a>
-  <a href="phpenhancements.php>Manager Login</a>
+  <a href="phpenhancements.php">Login</a>
 </p>
 <hr>
-<p id="footerlinks">
+<p id = "footerlinks">
+  <br>
   <a href="mailto:Contactus@SOECompany.com">Contact us</a>
   <br>
   <a href="termsandconditions.php">Terms and Conditions</a>
