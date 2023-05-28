@@ -14,8 +14,8 @@
 
     // Manager login validation
     if ((isset($_POST["name"])) and (isset($POST["pwd"]))) {
-        $name = $_POST["name"];
-        $pwd  = $_POST["name"];
+        $name = sanitizeInput($_POST["name"]);
+        $pwd  = sanitizeInput($_POST["name"]);
     }
     else {
         header("Location: phpenhancements.php?error");
@@ -91,6 +91,9 @@ if (!$conn) {
 function sanitizeInput($input)
 {
     // Perform sanitization here (e.g., trim, remove HTML control characters, etc.)
+    $input = trim($input);
+    $input = stripslashes($input);
+    $input = htmlspecialchars($input);
     return $input;
 }
 
