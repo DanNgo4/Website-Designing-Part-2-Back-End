@@ -90,20 +90,20 @@
                     <legend class="heading-apply">Skills and Experience</legend>
                     <p>Skills</p>
                         <p><label for="OOP">Object Oriented programming</label>
-                            <input type="checkbox" value="OOP" name="Skills[]" id="OOP" >
+                            <input type="checkbox" value="OOP" name="Skills" id="OOP" >
                         <label for="APIs">APIs</label>
-                        <input type="checkbox" value="APIs" name="Skills[]" id="APIs">
+                        <input type="checkbox" value="APIs" name="Skills" id="APIs">
                         <label for="AWS">AWS</label>
-                        <input type="checkbox" value="AWS" name="Skills[]" id="AWS">
+                        <input type="checkbox" value="AWS" name="Skills" id="AWS">
                         <label for="Java">Java</label>
-                        <input type="checkbox" value="Java" name="Skills[]" id="Java">
+                        <input type="checkbox" value="Java" name="Skills" id="Java">
                         <label for="Python">Python</label>
-                        <input type="checkbox" value="Python" name="Skills[]" id="Python">
-                        <label for="OS">Other Skills</label>
-                        <input type="checkbox" value="OS" name="Skills[]" id="OS" Checked="checked">
+                        <input type="checkbox" value="Python" name="Skills" id="Python">
+                        <label for="Otherskills">Other Skills</label>
+                        <input type="checkbox" value="Otherskills" name="Skills" id="OS" >
                         </p>
 
-                           <p><label for="OTS">Other Skills</label>
+                           <p><label for="OtherSkills">Other Skills</label>
                              <textarea id="OtherSkills" name="Description of Other Skills" rows="4" cols="40" placeholder="Mention your skills here"></textarea></p>
 
                     </fieldset>
