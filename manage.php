@@ -10,8 +10,16 @@
 </head>
 <body>
 <?php
-    include 'Header.inc'
+    include 'Header.inc';
 
+    if ((isset($_POST["name"])) and (isset($POST["pwd"]))) {
+        $name = $_POST["name"];
+        $pwd  = $_POST["name"];
+    }
+    else {
+        header("Location: phpenhancements.php?error");
+        exit();
+    }
 ?>
         <h1>EOI Management</h1>
 
