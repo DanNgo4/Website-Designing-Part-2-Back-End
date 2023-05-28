@@ -243,7 +243,10 @@ if (empty($Phone_Number)) {
     $errMsg .= "<p>You must enter a valid phone number (10 digits, no spaces or special characters).</p>";
 }
 
- 
+if (empty($OtherSkills)) {
+    $errMsg .= "<p>You must enter Other Skills.</p>";
+
+
 // Create the EOI table if it doesn't exist
 $create_table_query = "CREATE TABLE IF NOT EXISTS EOI (
   `EOInumber` INT AUTO_INCREMENT PRIMARY KEY,
