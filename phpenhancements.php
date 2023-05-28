@@ -13,7 +13,8 @@
 <?php
     include 'Header.inc'
 ?>
-    <form >
+    <form action = "manage.php" method = "POST">
+        <h1>Welcome Manager</h1>
     </form>
 <?php
     include 'Footer.inc'
