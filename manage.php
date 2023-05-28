@@ -10,29 +10,10 @@
 </head>
 <body>
 <?php
-    include 'Header.inc';
+session_start();
+include ("Header.inc");
+if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
 
-    // Manager login validation
-    if ((isset($_POST["name"])) and (isset($POST["pwd"]))) {
-        $name = sanitizeInput($_POST["name"]);
-        $pwd  = sanitizeInput($_POST["pwd"]);
-
-        if (empty($name)) {
-            header("Location: phpenhancements.php?error=Name is required");
-            exit();
-        }
-        elseif (empty($pwd)){
-            header("Location: phpenhancements.php?error=Password is required");
-            exit();
-        }
-        else {
-            echo "<p>Login successful !</p>";
-        }
-    }
-    else {
-        header("Location: phpenhancements.php?error");
-        exit();
-    }
 ?>
         <h1>EOI Management</h1>
 
@@ -125,8 +106,9 @@ function listAllEOIs($conn, $sortField)
             echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["job_reference"] . "</td><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["status"] . "</td></tr>";
         }
         echo "</table>";
+        echo "<p class='success-message'>EOIs listed successfully.</p>";
     } else {
-        echo "No EOIs found.";
+        echo "<p class='error-message'>No EOIs found.</p>";
     }
 }
 // List EOIs for a particular position (given a job reference number)
@@ -145,10 +127,11 @@ function listEOIsForPosition($conn, $jobReference)
             echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["job_reference"] . "</td><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["status"] . "</td></tr>";
         }
         echo "</table>";
-    } else {
-        echo "No EOIs found for Job Reference: $jobReference";
+        echo "<p class='success-message'> EOIs for position $position listed successfully. </p>";
+    } else { 
+        echo"<p class='error-message'> No EOIs found for position $position.</p>";
     }
-}
+    }
 
 // List EOIs for a particular applicant given their first name, last name, or both
 function listEOIsForApplicant($conn, $firstName, $lastName)
@@ -168,8 +151,9 @@ function listEOIsForApplicant($conn, $firstName, $lastName)
             echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["job_reference"] . "</td><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["status"] . "</td></tr>";
         }
         echo "</table>";
+        echo "<p class='success-message'>EOIs for applicant $applicant listed successfully.</p>";
     } else {
-        echo "No EOIs found for Applicant: $firstName $lastName";
+        echo "<p class='error-message'>No EOIs found for applicant $applicant.</p>";
     }
 }
 
@@ -179,14 +163,12 @@ function deleteEOIsWithJobReference($conn, $jobReference)
     $jobReference = sanitizeInput($jobReference);
     $sql = "DELETE FROM eoi WHERE job_reference = '$jobReference'";
     $result = $conn->query($sql);
-
-    if ($result) {
-        echo "EOIs with Job Reference: $jobReference have been deleted.";
+    if($result) {
+        echo "<p class='success-message'>EOIs for position $position deleted successfully.</p>";
     } else {
-        echo "Failed to delete EOIs with Job Reference: $jobReference";
+        echo "<p class='error-message'>Failed to delete EOIs for position $position.</p>";
     }
-}
-
+    }
 // Change the Status of an EOI
 function changeEOIStatus($conn, $eoiNumber, $status)
 {
@@ -197,9 +179,9 @@ function changeEOIStatus($conn, $eoiNumber, $status)
     $result = $conn->query($sql);
 
     if ($result) {
-        echo "EOI $eoiNumber status changed to $status.";
+        echo "<p class='success-message'>EOI status changed successfully.</p>";
     } else {
-        echo "Failed to change EOI $eoiNumber status.";
+        echo "<p class='error-message'>Failed to change EOI status.</p>";
     }
 }
 
@@ -211,26 +193,36 @@ if (isset($_GET['action'])) {
             listAllEOIs($conn, $sortField);
             break;
         case 'list_by_position':
-            // Handle list EOIs by position action
+            $position = isset($GET['position']) ? $_GET['position'] : '';
+            listEOIsByPosition($conn, $position);
             break;
-        case 'list_by_applicant':
-            // Handle list EOIs by applicant action
-            break;
-        case 'delete_by_position':
-            // Handle delete EOIs by position action
-            break;
-        case 'change_status':
-            // Handle change EOI status action
-            break;
-        default:
-            echo "Invalid action.";
-            break;
+            case 'list_by_applicant':
+                $applicant = isset($_GET['applicant']) ? $_GET['applicant'] : '';
+                listEOIsByApplicant($conn, $applicant);
+                break;
+            case 'delete_by_position':
+                $position = isset($_GET['position']) ? $_GET['position'] : '';
+                deleteEOIsByPosition($conn, $position);
+                break;
+            case 'change_status':
+                $eoiNumber = isset($_GET['eoi_number']) ? $_GET['eoi_number'] : '';
+                $status = isset($_GET['status']) ? $_GET['status'] : '';
+                changeEOIStatus($conn, $eoiNumber, $status);
+                break;
+            default:
+                echo "<p class='error-message'>Invalid action.</p>";
+                break;
+        }
     }
-}
 // Close the database connection
 $conn->close();
 
 include 'Footer.inc'
+}
+else {
+    header("Location: phpenhancements.php");
+    exit();
+}
 ?>
 </body>
 </html>

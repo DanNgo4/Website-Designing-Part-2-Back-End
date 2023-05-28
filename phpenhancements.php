@@ -11,9 +11,9 @@
 </head>
 <body>
 <?php
-    include 'Header.inc'
+    include ("Header.inc");
 ?>
-    <form action = "manage.php" method = "POST">
+    <form action = "login.php" method = "POST">
         <h1>Welcome Manager</h1>
             <label>Name</label>
             <input type = "text" name = "name" placeholder="User Name"></br>
