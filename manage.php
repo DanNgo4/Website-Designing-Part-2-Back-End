@@ -140,14 +140,14 @@ function listAllEOIs($conn, $list_all_EOIs)
     }
 }
     // List EOIs for a particular position (given a job reference number)
-    function listEOIsForPosition($conn, $jobReference)
+    function listEOIsForPosition($conn, $position)
     {
-        $jobReference = sanitizeInput($jobReference);
-        $sql = "SELECT * FROM EOI WHERE Job_Reference = '$jobReference'";
+        $position = sanitizeInput($position);
+        $sql = "SELECT * FROM EOI WHERE Job_Reference = '$position'";
         $result = $conn->query($sql);
         // Display the results
         if ($result->num_rows > 0) {
-            echo "<h2>EOIs for Job Reference: $jobReference</h2>";
+            echo "<h2>EOIs for Job Reference: $position</h2>";
             echo "<table>";
             echo "<tr><th>EOInumber</th>
             <th>Job Reference</th>
@@ -292,20 +292,20 @@ function listAllEOIs($conn, $list_all_EOIs)
     if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'list_all':
-                $list_all_EOIs = isset($_GET['list_all_EOIs']) ? $_GET['list_all_EOIs'] : 'EOInumber';
+                $list_all_EOIs = isset($_GET['list_all_EOIs']) ? $_GET['list_all_EOIs'] : 'EOInumber': ;
                 listAllEOIs($conn, $list_all_EOIs);
                 break;
             case 'list_by_position':
-                $jobReference = isset($GET['jobReference']) ? $_GET['jobReference'] : '';
-                listEOIsByPosition($conn, $jobReference);
+                $position = isset($GET['Job_Reference']) ? $_GET['Job_Reference'] : '';
+                listEOIsByPosition($conn, $position);
                 break;
                 case 'list_by_applicant':
-                    $firstName = isset($_GET['firstName']) ? $_GET['firstName'] : '';
-                    $lastName = isset($_GET['lastName']) ? $_GET['lastName'] : '';
+                    $firstName = isset($_GET['First_Name']) ? $_GET['First_Name'] : '';
+                    $lastName = isset($_GET['Last_Name']) ? $_GET['Last_Name'] : '';
                     listEOIsForApplicant($conn, $firstName, $lastName);
                     break;                
                 case 'delete_by_position':
-                    $jobReference = isset($_GET['jobReference']) ? $_GET['jobReference'] : '';
+                    $jobReference = isset($_GET['Job_Reference']) ? $_GET['Job_Reference'] : '';
                     deleteEOIsByPosition($conn, $jobReference);
                     break;
                 case 'change_status':
