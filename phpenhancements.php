@@ -15,6 +15,10 @@
 ?>
     <form action = "login.php" method = "post">
         <h1>Welcome Manager</h1>
+<?php if (isset($_GET['error'])) {
+    echo $_GET['error'] . "</br>";
+}
+?>
             <label>Name</label>
             <input type = "text" name = "name" placeholder = "User Name" required = "required"></br>
 
@@ -23,6 +27,8 @@
 
             <button type = "submit">Login</button>
     </form>
+
+    <p>Name: s104204262 </br> Password: 210503</p>
 <?php
     include 'Footer.inc'
 ?>

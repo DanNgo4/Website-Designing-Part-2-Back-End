@@ -110,6 +110,13 @@ include ("Header.inc");
         } else {
             echo "<p class='error-message'>No EOIs found.</p>";
         }
+<<<<<<< Updated upstream
+=======
+        echo "</table>";
+        echo "<p class='success-message'>EOIs listed successfully.</p>";
+    } else {
+        echo "<p class='error-message'>No EOIs found.</p>";
+>>>>>>> Stashed changes
     }
     // List EOIs for a particular position (given a job reference number)
     function listEOIsForPosition($conn, $jobReference)
@@ -131,6 +138,36 @@ include ("Header.inc");
         } else { 
             echo"<p class='error-message'> No EOIs found for position $position.</p>";
         }
+<<<<<<< Updated upstream
+=======
+        echo "</table>";
+        echo "<p class='success-message'> EOIs for position $position listed successfully. </p>";
+
+
+
+
+        echo "<p class='success-message'>EOIs for position $position listed successfully.</p>";
+    } else {
+        echo "<p class='error-message'>No EOIs found for position $position.</p>";
+    }
+
+// List EOIs for a particular applicant given their first name, last name, or both
+function listEOIsForApplicant($conn, $firstName, $lastName)
+{
+    $firstName = sanitizeInput($firstName);
+    $lastName = sanitizeInput($lastName);
+
+    $sql = "SELECT * FROM eoi WHERE first_name LIKE '%$firstName%' AND last_name LIKE '%$lastName%'";
+    $result = $conn->query($sql);
+
+    // Display the results
+    if ($result->num_rows > 0) {
+        echo "<h2>EOIs for Applicant: $firstName $lastName</h2>";
+        echo "<table>";
+        echo "<tr><th>EOInumber</th><th>Job Reference</th><th>First Name</th><th>Last Name</th><th>Status</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["job_reference"] . "</td><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["status"] . "</td></tr>";
+>>>>>>> Stashed changes
         }
 
     // List EOIs for a particular applicant given their first name, last name, or both
@@ -214,10 +251,11 @@ include ("Header.inc");
                     break;
             }
         }
+    
     // Close the database connection
     $conn->close();
-    include 'Footer.inc'
 ?>
+<a href = "logout.php"><h1>LOGOUT</h1></a>
 </body>
 </html>
 <?php 
@@ -226,4 +264,5 @@ else{
      header("Location: phpenhancements.php?error");
      exit();
 }
+include 'Footer.inc'
  ?>
