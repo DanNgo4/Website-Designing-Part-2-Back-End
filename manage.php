@@ -15,8 +15,10 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
 <body>
     <h1>EOI Management</h1>
     <h2>List All EOIs</h2>
-        <input type="submit" value="List All EOIs">
-    </form>
+    <form action="manage.php" method="GET"> <!-- Add the opening <form> tag -->
+        <input type="hidden" name="action" value="list_all"> <!-- Add the hidden input for the action -->
+        <input type="submit" value="SUBMIT">
+</form>
     <hr>
     <h2>List EOIs For A Particular Position</h2>
     <form action="manage.php" method="GET" class="position-form">
