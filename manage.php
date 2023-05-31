@@ -1,3 +1,7 @@
+<?php 
+session_start();
+if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -214,3 +218,10 @@
 <a href = "logout.php"><h1>LOGOUT</h1></a>
 </body>
 </html>
+<?php 
+ } else{
+     header("Location: phpenhancements.php?error");
+     exit();
+}
+include 'Footer.inc';
+ ?>
