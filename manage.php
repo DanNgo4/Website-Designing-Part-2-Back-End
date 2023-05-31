@@ -87,9 +87,48 @@ function listAllEOIs($conn, $sortField)
     if ($result->num_rows > 0) {
         echo "<h2>All EOIs:</h2>";
         echo "<table>";
-        echo "<tr><th>EOInumber</th><th>Job Reference</th><th>First Name</th><th>Last Name</th><th>Gender</th><th>Status</th></tr>";
+        //outcome
+        echo "<tr><th>EOInumber</th>
+        <th>Job Reference</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Date of Birth</th>
+        <th>Gender</th>
+        <th>Surburb Town</th>
+        <th>State</th>
+        <th>Postcode</th>
+        <th>Email Address</th>
+        <th>Phone Number</th>
+        <th>Skill 01</th>
+        <th>Skill 02</th>
+        <th>Skill 03</th>
+        <th>Skill 04</th>
+        <th>Skill 05</th>
+        <th>Other Skills</th>
+        <th>Status</th>
+        </tr>";
         while ($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["Job_Reference"] . "</td><td>" . $row["First_Name"] . "</td><td>" . $row["Last_Name"] . "</td><td>" . $row["Gender"] . "</td><td>" . $row["Status"] . "</td></tr>";
+            echo "<tr>
+            <td>" . $row["EOInumber"] . "</td>
+            <td>" . $row["Job_Reference"] . "</td>
+            <td>" . $row["First_Name"] . "</td>
+            <td>" . $row["Last_Name"] . "</td>
+            <td>" . $row["dob"] . "</td>
+            <td>" . $row["Gender"] . "</td>
+            <td>" . $row["Street_Address"] . "</td>
+            <td>" . $row["Suburb_Town"] . "</td>
+            <td>" . $row["State"] . "</td>
+            <td>" . $row["Postcode"] . "</td>
+            <td>" . $row["Email_Address"] . "</td>
+            <td>" . $row["Phone_Number"] . "</td>
+            <td>" . $row["Skill_01"] . "</td>
+            <td>" . $row["Skill_02"] . "</td>
+            <td>" . $row["Skill_03"] . "</td>
+            <td>" . $row["Skill_04"] . "</td>
+            <td>" . $row["Skill_05"] . "</td>
+            <td>" . $row["OtherSkills"] . "</td>
+            <td>" . $row["Status"] . "</td>
+            </tr>";
         }
         echo "</table>";
         echo "<p class='success-message'>EOIs listed successfully.</p>";
@@ -107,9 +146,47 @@ function listAllEOIs($conn, $sortField)
         if ($result->num_rows > 0) {
             echo "<h2>EOIs for Job Reference: $jobReference</h2>";
             echo "<table>";
-            echo "<tr><th>EOInumber</th><th>Job Reference</th><th>First Name</th><th>Last Name</th><th>Status</th></tr>";
+            echo "<tr><th>EOInumber</th>
+            <th>Job Reference</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Surburb Town</th>
+            <th>State</th>
+            <th>Postcode</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Skill 01</th>
+            <th>Skill 02</th>
+            <th>Skill 03</th>
+            <th>Skill 04</th>
+            <th>Skill 05</th>
+            <th>Other Skills</th>
+            <th>Status</th>
+            </tr>";
             while ($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["Job_Reference"] . "</td><td>" . $row["First_Name"] . "</td><td>" . $row["Last_Name"] . "</td><td>" . $row["status"] . "</td></tr>";
+                echo "<tr>
+            <td>" . $row["EOInumber"] . "</td>
+            <td>" . $row["Job_Reference"] . "</td>
+            <td>" . $row["First_Name"] . "</td>
+            <td>" . $row["Last_Name"] . "</td>
+            <td>" . $row["dob"] . "</td>
+            <td>" . $row["Gender"] . "</td>
+            <td>" . $row["Street_Address"] . "</td>
+            <td>" . $row["Suburb_Town"] . "</td>
+            <td>" . $row["State"] . "</td>
+            <td>" . $row["Postcode"] . "</td>
+            <td>" . $row["Email_Address"] . "</td>
+            <td>" . $row["Phone_Number"] . "</td>
+            <td>" . $row["Skill_01"] . "</td>
+            <td>" . $row["Skill_02"] . "</td>
+            <td>" . $row["Skill_03"] . "</td>
+            <td>" . $row["Skill_04"] . "</td>
+            <td>" . $row["Skill_05"] . "</td>
+            <td>" . $row["OtherSkills"] . "</td>
+            <td>" . $row["Status"] . "</td>
+            </tr>";
             }
             echo "</table>";
             echo "<p class='success-message'>EOIs for position $jobReference listed successfully.</p>";
@@ -130,9 +207,47 @@ function listAllEOIs($conn, $sortField)
         if ($result->num_rows > 0) {
             echo "<h2>EOIs for Applicant: $firstName $lastName</h2>";
             echo "<table>";
-            echo "<tr><th>EOInumber</th><th>Job Reference</th><th>First Name</th><th>Last Name</th><th>Status</th></tr>";
+            echo "<tr><th>EOInumber</th>
+            <th>Job Reference</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Surburb Town</th>
+            <th>State</th>
+            <th>Postcode</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Skill 01</th>
+            <th>Skill 02</th>
+            <th>Skill 03</th>
+            <th>Skill 04</th>
+            <th>Skill 05</th>
+            <th>Other Skills</th>
+            <th>Status</th>
+            </tr>";
             while ($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["Job_Reference"] . "</td><td>" . $row["First_Name"] . "</td><td>" . $row["Last_Name"] . "</td><td>" . $row["status"] . "</td></tr>";
+                echo "<tr>
+                <td>" . $row["EOInumber"] . "</td>
+                <td>" . $row["Job_Reference"] . "</td>
+                <td>" . $row["First_Name"] . "</td>
+                <td>" . $row["Last_Name"] . "</td>
+                <td>" . $row["dob"] . "</td>
+                <td>" . $row["Gender"] . "</td>
+                <td>" . $row["Street_Address"] . "</td>
+                <td>" . $row["Suburb_Town"] . "</td>
+                <td>" . $row["State"] . "</td>
+                <td>" . $row["Postcode"] . "</td>
+                <td>" . $row["Email_Address"] . "</td>
+                <td>" . $row["Phone_Number"] . "</td>
+                <td>" . $row["Skill_01"] . "</td>
+                <td>" . $row["Skill_02"] . "</td>
+                <td>" . $row["Skill_03"] . "</td>
+                <td>" . $row["Skill_04"] . "</td>
+                <td>" . $row["Skill_05"] . "</td>
+                <td>" . $row["OtherSkills"] . "</td>
+                <td>" . $row["Status"] . "</td>
+                </tr>";
             }
             echo "</table>";
             echo "<p>EOIs for applicant $firstName $lastName listed successfully.</p>";
