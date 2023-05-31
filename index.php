@@ -30,7 +30,7 @@
       <tr>
         <td>
           <h2 class="heading-index">We are hiring!</h2>
-          <p class="p-index">We are looking for DevOps Engineers of various levels of experience. Click <a href="apply.html"><strong>here</strong></a> for more information.</p>
+          <p class="p-index">We are looking for DevOps Engineers of various levels of experience. Click <a href="apply.php"><strong>here</strong></a> for more information.</p>
         </td>
       </tr>
     </table>
