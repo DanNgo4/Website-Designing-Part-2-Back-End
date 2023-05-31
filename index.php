@@ -56,7 +56,7 @@
       <tr>
         <!-- Define an image -->
         <td class="HiringBanner-box">
-          <img class="IndexBanner" src="images/Indeximage.jpg" alt="BannerImage">
+          <img class="IndexBanner" src="images/IndexImage.jpg" alt="BannerImage">
         </td>
         <!-- Define a description of what the company does -->
         <td class="HiringBanner-box">
@@ -76,7 +76,7 @@
 <tr>
   <!-- Define an image -->
   <td class="HiringBanner-box">
-    <img class="IndexBanner" src="images/Indeximage2.jpg" alt="BannerImage">
+    <img class="IndexBanner" src="images/IndexImage2.jpg" alt="BannerImage">
   </td>
   <!-- Define a description of how this website was made -->
   <td class="HiringBanner-box">
