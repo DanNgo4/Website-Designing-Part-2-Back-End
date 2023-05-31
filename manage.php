@@ -112,6 +112,9 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
                     // Perform the delete operation
                     if (mysqli_query($conn, $sql)) {
                         echo "EOIs with job reference '$jobReference' have been deleted successfully.";
+                    // Reset the EOInumber
+                     $resetSql = "ALTER TABLE EOI AUTO_INCREMENT = 1";
+                     mysqli_query($conn, $resetSql);
                     } else {
                         echo "Error: " . mysqli_error($conn);
                     }
