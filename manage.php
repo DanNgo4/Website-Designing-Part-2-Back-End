@@ -15,20 +15,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
 <body>
     <h1>EOI Management</h1>
     <h2>List All EOIs</h2>
-    <form action="manage.php" method="GET">
-        <input type="hidden" name="action" value="list_all">
-        <label for="sort_field">Sort By:</label>
-        <select name="sort_field" id="sort_field">
-            <option value="all">List All</option>
-            <option value="EOInumber">EOI Number</option>
-            <option value="Job_Reference">Job Reference</option>
-            <option value="First_Name">First Name</option>
-            <option value="Last_Name">Last Name</option>
-            <option value="Gender">Gender</option>
-            <option value="Status">Status</option>
-        </select>
-        <br>
-        <input type="submit" value="List EOIs">
+        <input type="submit" value="List All EOIs">
     </form>
     <hr>
     <h2>List EOIs For A Particular Position</h2>
@@ -102,35 +89,12 @@ function listAllEOIs($conn, $sortField)
         echo "<table>";
         echo "<tr><th>EOInumber</th><th>Job Reference</th><th>First Name</th><th>Last Name</th><th>Gender</th><th>Status</th></tr>";
         while ($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["Job_Reference"] . "</td><td>" . $row["First_Name"] . "</td><td>" . $row["Last_Name"] . "</td><td>" . $row["Gender"] . "</td><td>" . $row["status"] . "</td></tr>";
+            echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["Job_Reference"] . "</td><td>" . $row["First_Name"] . "</td><td>" . $row["Last_Name"] . "</td><td>" . $row["Gender"] . "</td><td>" . $row["Status"] . "</td></tr>";
         }
         echo "</table>";
         echo "<p class='success-message'>EOIs listed successfully.</p>";
     } else {
         echo "<p class='error-message'>No EOIs found.</p>";
-    }
-}
-// Check if the form has been submitted
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['action'] === 'list_all') {
-    // Get the selected option from the "Sort By" field
-    $selectedOption = isset($_GET['sort_field']) ? $_GET['sort_field'] : '';
-
-    // Perform actions based on the selected option
-    switch ($selectedOption) {
-        case 'all':
-            listAllEOIs($conn, 'EOInumber');
-            break;
-        case 'EOInumber':
-        case 'Job_Reference':
-        case 'First_Name':
-        case 'Last_Name':
-        case 'Gender':
-        case 'Status':
-            listAllEOIs($conn, $selectedOption);
-            break;
-        default:
-            echo "<p class='error-message'>Invalid sorting option selected.</p>";
-            break;
     }
 }
     // List EOIs for a particular position (given a job reference number)
