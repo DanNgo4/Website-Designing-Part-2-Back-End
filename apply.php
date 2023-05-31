@@ -40,7 +40,7 @@
         <input type="text" name="Last_Name" id="Last_Name" maxlength="20" pattern="[A-Za-z]{1,20}" required="required">
         </p>
         <p><label for="dob">DOB</label>
-            <input type="date" name="dob" id="dob" >
+            <input type="text" name="dob" id="dob" placeholder="YYYY/MM/DD">
             <p><label for="street">Steet Address</label>
             <input type="text" name="Street_Address" id="Street_Address" maxlength="40" pattern="^[a-zA-Z0-9]{1,40}+$" required="required">
             <label for="suburb">Suburb/Town</label>
