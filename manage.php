@@ -18,7 +18,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
     <form action="manage.php" method="GET"> <!-- Add the opening <form> tag -->
         <input type="hidden" name="action" value="list_all"> <!-- Add the hidden input for the action -->
         <input type="submit" value="List All">
-</form>
+    </form>
     <hr>
     <h2>List EOIs For A Particular Position</h2>
     <form action="manage.php" method="GET" class="position-form">
@@ -34,8 +34,8 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
         <label for="First_Name">First Name:</label>
         <input type="text" name="First_Name" id="First_Name">
         <br>
-        <label for="Last_name">Last Name:</label>
-        <input type="text" name="Last_name" id="Last_Name">
+        <label for="Last_Name">Last Name:</label>
+        <input type="text" name="Last_Name" id="Last_Name">
         <br>
         <input type="submit" value="SUBMIT">
     </form>
@@ -59,6 +59,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
         <br>
         <input type="submit" value="CHANGE">
     </form>
+
     <?php
     // Database connection
     require_once("settings.php");
@@ -67,177 +68,109 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
     if (!$conn) {
         // Display an error message
         echo "<p>Database connection failure</p>";
-    }
-    // Function to sanitize user input
-    function sanitizeInput($input)
-    {
-        // Perform sanitization here (e.g., trim, remove HTML control characters, etc.)
-        $input = trim($input);
-        $input = stripslashes($input);
-        $input = htmlspecialchars($input);
-        return $input;
+        exit();
     }
 
-    
-    // List all EOIs
-function listAllEOIs($conn, $list_all_EOIs)
-{
-    $list_all_EOIs = sanitizeInput($list_all_EOIs);
-    $sql = "SELECT * FROM EOI";
-    $result = $conn->query($sql);
-    // Display the results
-    if ($result->num_rows > 0) {
-        echo "<h2>All EOIs:</h2>";
-        echo "<table>";
-        //outcome
-        echo "<tr><th>EOInumber</th>
-        <th>Job Reference</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>dob</th>
-        <th>Gender</th>
-        <th>Street Address</th>
-        <th>Surburb Town</th>
-        <th>State</th>
-        <th>Postcode</th>
-        <th>Email Address</th>
-        <th>Phone Number</th>
-        <th>Skill 01</th>
-        <th>Skill 02</th>
-        <th>Skill 03</th>
-        <th>Skill 04</th>
-        <th>Skill 05</th>
-        <th>Other Skills</th>
-        <th>Status</th>
-        </tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>
-            <td>" . $row["EOInumber"] . "</td>
-            <td>" . $row["Job_Reference"] . "</td>
-            <td>" . $row["First_Name"] . "</td>
-            <td>" . $row["Last_Name"] . "</td>
-            <td>" . $row["dob"] . "</td>
-            <td>" . $row["Gender"] . "</td>
-            <td>" . $row["Street_Address"] . "</td>
-            <td>" . $row["Suburb_Town"] . "</td>
-            <td>" . $row["State"] . "</td>
-            <td>" . $row["Postcode"] . "</td>
-            <td>" . $row["Email_Address"] . "</td>
-            <td>" . $row["Phone_Number"] . "</td>
-            <td>" . $row["Skill_01"] . "</td>
-            <td>" . $row["Skill_02"] . "</td>
-            <td>" . $row["Skill_03"] . "</td>
-            <td>" . $row["Skill_04"] . "</td>
-            <td>" . $row["Skill_05"] . "</td>
-            <td>" . $row["OtherSkills"] . "</td>
-            <td>" . $row["Status"] . "</td>
-            </tr>";
+    // Perform the requested query
+    if (isset($_GET['action'])) {
+        $query = $_GET['action'];
+
+        switch ($query) {
+            case "list_all":
+                $sql = "SELECT * FROM EOI";
+                break;
+            case "list_by_position":
+                if (isset($_GET["Job_Reference"])) {
+                    $jobReference = $_GET["Job_Reference"];
+                    $sql = "SELECT * FROM EOI WHERE Job_Reference = '$jobReference'";
+                } else {
+                    // Redirect to an error page if the job reference is not provided
+                    header("Location: error.php");
+                    exit();
+                }
+                break;
+            case "list_by_applicant":
+                if (isset($_GET["First_Name"]) && isset($_GET["Last_Name"])) {
+                    $firstName = $_GET["First_Name"];
+                    $lastName = $_GET["Last_Name"];
+                    $sql = "SELECT * FROM EOI WHERE First_Name = '$firstName' AND Last_Name = '$lastName'";
+                } else {
+                    // Redirect to an error page if the first name or last name is not provided
+                    header("Location: error.php");
+                    exit();
+                }
+                break;
+            case "delete_by_position":
+                if (isset($_GET["Job_Reference"])) {
+                    $jobReference = $_GET["Job_Reference"];
+                    $sql = "DELETE FROM EOI WHERE Job_Reference = '$jobReference'";
+                    // Perform the delete operation
+                    if (mysqli_query($conn, $sql)) {
+                        echo "EOIs with job reference '$jobReference' have been deleted successfully.";
+                    } else {
+                        echo "Error: " . mysqli_error($conn);
+                    }
+                    exit();
+                } else {
+                    // Redirect to an error page if the job reference is not provided
+                    header("Location: error.php");
+                    exit();
+                }
+                break;
+            case "change_status":
+                if (isset($_GET["eoi_number"]) && isset($_GET["status"])) {
+                    $eoiNumber = $_GET["eoi_number"];
+                    $status = $_GET["status"];
+                    $sql = "UPDATE EOI SET Status = '$status' WHERE EOInumber = $eoiNumber";
+                    // Perform the status change operation
+                    if (mysqli_query($conn, $sql)) {
+                        echo "EOI with EOInumber '$eoiNumber' has been updated successfully.";
+                    } else {
+                        echo "Error: " . mysqli_error($conn);
+                    }
+                    exit();
+                } else {
+                    // Redirect to an error page if the EOInumber or status is not provided
+                    header("Location: error.php");
+                    exit();
+                }
+                break;
+            default:
+                // Redirect to an error page if an invalid query is requested
+                header("Location: error.php");
+                exit();
         }
-        echo "</table>";
-        echo "<p class='success-message'>EOIs listed successfully.</p>";
-    } else {
-        echo "<p class='error-message'>No EOIs found.</p>";
-    }
-}
-    // List EOIs for a particular position (given a job reference number)
-    function listEOIsForPosition($conn, $position)
-    {
-        $position = sanitizeInput($position);
-        $sql = "SELECT * FROM EOI WHERE Job_Reference = '$position'";
-        $result = $conn->query($sql);
-        // Display the results
-        if ($result->num_rows > 0) {
-            echo "<h2>EOIs for Job Reference: $position</h2>";
-            echo "<table>";
-            echo "<tr><th>EOInumber</th>
-            <th>Job Reference</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
-            <th>Gender</th>
-            <th>Street Address</th>
-            <th>Surburb Town</th>
-            <th>State</th>
-            <th>Postcode</th>
-            <th>Email Address</th>
-            <th>Phone Number</th>
-            <th>Skill 01</th>
-            <th>Skill 02</th>
-            <th>Skill 03</th>
-            <th>Skill 04</th>
-            <th>Skill 05</th>
-            <th>Other Skills</th>
-            <th>Status</th>
-            </tr>";
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>
-            <td>" . $row["EOInumber"] . "</td>
-            <td>" . $row["Job_Reference"] . "</td>
-            <td>" . $row["First_Name"] . "</td>
-            <td>" . $row["Last_Name"] . "</td>
-            <td>" . $row["dob"] . "</td>
-            <td>" . $row["Gender"] . "</td>
-            <td>" . $row["Street_Address"] . "</td>
-            <td>" . $row["Suburb_Town"] . "</td>
-            <td>" . $row["State"] . "</td>
-            <td>" . $row["Postcode"] . "</td>
-            <td>" . $row["Email_Address"] . "</td>
-            <td>" . $row["Phone_Number"] . "</td>
-            <td>" . $row["Skill_01"] . "</td>
-            <td>" . $row["Skill_02"] . "</td>
-            <td>" . $row["Skill_03"] . "</td>
-            <td>" . $row["Skill_04"] . "</td>
-            <td>" . $row["Skill_05"] . "</td>
-            <td>" . $row["OtherSkills"] . "</td>
-            <td>" . $row["Status"] . "</td>
-            </tr>";
-            }
-            echo "</table>";
-            echo "<p class='success-message'>EOIs for position $jobReference listed successfully.</p>";
-        } else {
-            echo "<p class='error-message'>No EOIs found for position $jobReference.</p>";
-        }
-    }
-    // List EOIs for a particular applicant given their first name, last name, or both
-    function listEOIsForApplicant($conn, $firstName, $lastName)
-    {
-        $firstName = sanitizeInput($firstName);
-        $lastName = sanitizeInput($lastName);
 
-        $sql = "SELECT * FROM EOI WHERE First_Name LIKE '%$firstName%' AND Last_Name LIKE '%$lastName%'";
-        $result = $conn->query($sql);
+        // Execute the query
+        $result = mysqli_query($conn, $sql);
 
-        // Display the results
-        if ($result->num_rows > 0) {
-            echo "<h2>EOIs for Applicant: $firstName $lastName</h2>";
-            echo "<table>";
-            echo "<tr><th>EOInumber</th>
-            <th>Job Reference</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
-            <th>Gender</th>
-            <th>Street Address</th>
-            <th>Surburb Town</th>
-            <th>State</th>
-            <th>Postcode</th>
-            <th>Email Address</th>
-            <th>Phone Number</th>
-            <th>Skill 01</th>
-            <th>Skill 02</th>
-            <th>Skill 03</th>
-            <th>Skill 04</th>
-            <th>Skill 05</th>
-            <th>Other Skills</th>
-            <th>Status</th>
-            </tr>";
-            while ($row = $result->fetch_assoc()) {
+        if ($result) {
+            // Display the results in a table format
+            echo "<table>
+                    <tr>
+                    <th>EOInumber</th>
+                    <th>Job Reference</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Street Address</th>
+                    <th>Suburb Town</th>
+                    <th>State</th>
+                    <th>Postcode</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th>Skill 01</th>
+                    <th>Skill 02</th>
+                    <th>Skill 03</th>
+                    <th>Status</th>    
+                    </tr>";
+
+            while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>
                 <td>" . $row["EOInumber"] . "</td>
                 <td>" . $row["Job_Reference"] . "</td>
                 <td>" . $row["First_Name"] . "</td>
                 <td>" . $row["Last_Name"] . "</td>
-                <td>" . $row["dob"] . "</td>
                 <td>" . $row["Gender"] . "</td>
                 <td>" . $row["Street_Address"] . "</td>
                 <td>" . $row["Suburb_Town"] . "</td>
@@ -248,81 +181,24 @@ function listAllEOIs($conn, $list_all_EOIs)
                 <td>" . $row["Skill_01"] . "</td>
                 <td>" . $row["Skill_02"] . "</td>
                 <td>" . $row["Skill_03"] . "</td>
-                <td>" . $row["Skill_04"] . "</td>
-                <td>" . $row["Skill_05"] . "</td>
-                <td>" . $row["OtherSkills"] . "</td>
                 <td>" . $row["Status"] . "</td>
-                </tr>";
+                    </tr>";
             }
+
             echo "</table>";
-            echo "<p>EOIs for applicant $firstName $lastName listed successfully.</p>";
+
+            // Free the result set
+            mysqli_free_result($result);
         } else {
-            echo "<p>No EOIs found for applicant $firstName $lastName.</p>";
+            echo "Error: " . mysqli_error($conn);
         }
     }
 
-    // Delete all EOIs with a specified job reference number
-    function deleteEOIsWithJobReference($conn, $jobReference)
-    {
-        $jobReference = sanitizeInput($jobReference);
-        $sql = "DELETE FROM EOI WHERE Job_Reference = '$jobReference'";
-        $result = $conn->query($sql);
-        if($result) {
-            echo "<p class='success-message'>EOIs for position $jobReference deleted successfully.</p>";
-        } else {
-            echo "<p class='error-message'>Failed to delete EOIs for position $jobReference.</p>";
-        }
-    }
-    // Change the Status of an EOI
-    function changeEOIStatus($conn, $EOinumber, $Status)
-    {
-        $EOInumber = sanitizeInput($EOInumber);
-        $Status = sanitizeInput($Status);
-
-        $sql = "UPDATE EOI SET status = '$Status' WHERE EOInumber = $EOInumber";
-        $result = $conn->query($sql);
-
-        if ($result) {
-            echo "<p class='success-message'>EOI status changed successfully.</p>";
-        } else {
-            echo "<p class='error-message'>Failed to change EOI status.</p>";
-        }
-    }
-    // Check the requested action and execute the appropriate query
-    if (isset($_GET['action'])) {
-        switch ($_GET['action']) {
-            case 'list_all':
-                $list_all_EOIs = isset($_GET['list_all_EOIs']) ? $_GET['list_all_EOIs'] : 'EOInumber';
-                listAllEOIs($conn, $list_all_EOIs);
-                break;
-            case 'list_by_position':
-                $position = isset($GET['Job_Reference']) ? $_GET['Job_Reference'] : '';
-                listEOIsByPosition($conn, $position);
-                break;
-                case 'list_by_applicant':
-                    $firstName = isset($_GET['First_Name']) ? $_GET['First_Name'] : '';
-                    $lastName = isset($_GET['Last_Name']) ? $_GET['Last_Name'] : '';
-                    listEOIsForApplicant($conn, $firstName, $lastName);
-                    break;                
-                case 'delete_by_position':
-                    $jobReference = isset($_GET['Job_Reference']) ? $_GET['Job_Reference'] : '';
-                    deleteEOIsByPosition($conn, $jobReference);
-                    break;
-                case 'change_status':
-                    $EOInumber = isset($_GET['EOInumber']) ? $_GET['EOInumer'] : '';
-                    $Status = isset($_GET['Status']) ? $_GET['Status'] : '';
-                    changeEOIStatus($conn, $EOInumber, $Status);
-                    break;
-                default:
-                    echo "<p class='error-message'>Invalid action.</p>";
-                    break;
-            }
-        }
-    
     // Close the database connection
-    $conn->close();
+    mysqli_close($conn);
 ?>
-<a href = "logout.php"><h1>LOGOUT</h1></a>
+
+<a href="logout.php"><h1>LOGOUT</h1></a>
 </body>
 </html>
 <?php 
@@ -331,4 +207,4 @@ function listAllEOIs($conn, $list_all_EOIs)
      exit();
 }
 include 'Footer.inc';
- ?>
+?>
