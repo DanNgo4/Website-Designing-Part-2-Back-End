@@ -17,7 +17,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
     <h2>List All EOIs</h2>
     <form action="manage.php" method="GET"> <!-- Add the opening <form> tag -->
         <input type="hidden" name="action" value="list_all"> <!-- Add the hidden input for the action -->
-        <input type="submit" value="SUBMIT">
+        <input type="submit" value="List All">
 </form>
     <hr>
     <h2>List EOIs For A Particular Position</h2>
@@ -292,7 +292,7 @@ function listAllEOIs($conn, $list_all_EOIs)
     if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'list_all':
-                $list_all_EOIs = isset($_GET['list_all_EOIs']) ? $_GET['list_all_EOIs'] : 'EOInumber': ;
+                $list_all_EOIs = isset($_GET['list_all_EOIs']) ? $_GET['list_all_EOIs'] : 'EOInumber';
                 listAllEOIs($conn, $list_all_EOIs);
                 break;
             case 'list_by_position':
