@@ -105,11 +105,6 @@ include ("Header.inc");
             while ($row = $result->fetch_assoc()) {
                 echo "<tr><td>" . $row["EOInumber"] . "</td><td>" . $row["job_reference"] . "</td><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["status"] . "</td></tr>";
             }
-            echo "</table>";
-            echo "<p class='success-message'>EOIs listed successfully.</p>";
-        } else {
-            echo "<p class='error-message'>No EOIs found.</p>";
-        }
         echo "</table>";
         echo "<p class='success-message'>EOIs listed successfully.</p>";
     } else {
