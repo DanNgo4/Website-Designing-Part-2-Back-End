@@ -78,10 +78,10 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
 
     
     // List all EOIs
-function listAllEOIs($conn, $sortField)
+function listAllEOIs($conn, $list_all_EOIs)
 {
-    $sortField = sanitizeInput($sortField);
-    $sql = "SELECT * FROM EOI ORDER BY $sortField";
+    $list_all_EOIs = sanitizeInput($list_all_EOIs);
+    $sql = "SELECT * FROM EOI";
     $result = $conn->query($sql);
     // Display the results
     if ($result->num_rows > 0) {
@@ -92,8 +92,9 @@ function listAllEOIs($conn, $sortField)
         <th>Job Reference</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Date of Birth</th>
+        <th>dob</th>
         <th>Gender</th>
+        <th>Street Address</th>
         <th>Surburb Town</th>
         <th>State</th>
         <th>Postcode</th>
@@ -152,6 +153,7 @@ function listAllEOIs($conn, $sortField)
             <th>Last Name</th>
             <th>Date of Birth</th>
             <th>Gender</th>
+            <th>Street Address</th>
             <th>Surburb Town</th>
             <th>State</th>
             <th>Postcode</th>
@@ -213,6 +215,7 @@ function listAllEOIs($conn, $sortField)
             <th>Last Name</th>
             <th>Date of Birth</th>
             <th>Gender</th>
+            <th>Street Address</th>
             <th>Surburb Town</th>
             <th>State</th>
             <th>Postcode</th>
@@ -287,8 +290,8 @@ function listAllEOIs($conn, $sortField)
     if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'list_all':
-                $sortField = isset($_GET['sort_field']) ? $_GET['sort_field'] : 'EOInumber';
-                listAllEOIs($conn, $sortField);
+                $list_all_EOIs = isset($_GET['list_all_EOIs']) ? $_GET['list_all_EOIs'] : 'EOInumber';
+                listAllEOIs($conn, $list_all_EOIs);
                 break;
             case 'list_by_position':
                 $jobReference = isset($GET['jobReference']) ? $_GET['jobReference'] : '';
