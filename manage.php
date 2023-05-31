@@ -70,10 +70,15 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
         echo "<p>Database connection failure</p>";
         exit();
     }
-
+    function sanitizeInput($input) {
+        $input = trim($input); // Remove leading/trailing whitespace
+        $input = stripslashes($input); // Remove backslashes
+        $input = htmlspecialchars($input); // Convert special characters to HTML entities
+        return $input;
+    }
     // Perform the requested query
     if (isset($_GET['action'])) {
-        $query = $_GET['action'];
+        $query =sanitizeInput($_GET['action']);
 
         switch ($query) {
             case "list_all":
@@ -81,7 +86,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
                 break;
             case "list_by_position":
                 if (isset($_GET["Job_Reference"])) {
-                    $jobReference = $_GET["Job_Reference"];
+                    $jobReference = sanitizeInput($_GET["Job_Reference"]);
                     $sql = "SELECT * FROM EOI WHERE Job_Reference = '$jobReference'";
                 } else {
                     // Redirect to an error page if the job reference is not provided
@@ -91,8 +96,8 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
                 break;
             case "list_by_applicant":
                 if (isset($_GET["First_Name"]) && isset($_GET["Last_Name"])) {
-                    $firstName = $_GET["First_Name"];
-                    $lastName = $_GET["Last_Name"];
+                    $firstName = sanitizeInput($_GET["First_Name"]);
+                    $lastName = sanitizeInput($_GET["Last_Name"]);
                     $sql = "SELECT * FROM EOI WHERE First_Name = '$firstName' AND Last_Name = '$lastName'";
                 } else {
                     // Redirect to an error page if the first name or last name is not provided
@@ -102,7 +107,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
                 break;
             case "delete_by_position":
                 if (isset($_GET["Job_Reference"])) {
-                    $jobReference = $_GET["Job_Reference"];
+                    $jobReference = sanitizeInput($_GET["Job_Reference"]);
                     $sql = "DELETE FROM EOI WHERE Job_Reference = '$jobReference'";
                     // Perform the delete operation
                     if (mysqli_query($conn, $sql)) {
@@ -119,8 +124,8 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
                 break;
             case "change_status":
                 if (isset($_GET["eoi_number"]) && isset($_GET["status"])) {
-                    $eoiNumber = $_GET["eoi_number"];
-                    $status = $_GET["status"];
+                    $eoiNumber = sanitizeInput($_GET["eoi_number"]);
+                    $status = sanitizeInput($_GET["status"]);
                     $sql = "UPDATE EOI SET Status = '$status' WHERE EOInumber = $eoiNumber";
                     // Perform the status change operation
                     if (mysqli_query($conn, $sql)) {
