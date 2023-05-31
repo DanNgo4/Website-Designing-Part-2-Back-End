@@ -111,6 +111,11 @@ if (isset($_POST["Phone_Number"])) {
     exit;
 }
 
+if (isset($_POST["OtherSkills"])) {
+    $OtherSkills = sanitise_input($_POST["OtherSkills"]);
+} else {
+    $OtherSkills = "";
+}
 
 $Job_Reference = sanitise_input($Job_Reference);
 $First_Name = sanitise_input($First_Name);
@@ -229,7 +234,14 @@ if (empty($Phone_Number)) {
     $errMsg .= "<p>You must enter a valid phone number (10 digits, no spaces or special characters).</p>";
 }
 
-
+if (isset($_POST["OtherSkills"])) {
+    $OtherSkills = sanitise_input($_POST["OtherSkills"]);
+    if (!preg_match("/^[a-zA-Z0-9\s]+$/", $OtherSkills)) {
+        $errMsg .= "<p>Only alphanumeric characters and spaces are allowed in the Other Skills field.</p>";
+    }
+} else {
+    $OtherSkills = "";
+}
 
 // Create the EOI table if it doesn't exist
 $createTableQuery = "CREATE TABLE IF NOT EXISTS EOI (
@@ -246,7 +258,6 @@ $createTableQuery = "CREATE TABLE IF NOT EXISTS EOI (
     `Email_Address` VARCHAR(50),
     `Phone_Number` VARCHAR(20),
     `OtherSkills` TEXT
-    `Status` enum('New','Current','Final') DEFAULT 'New'
 )";
 
 // Execute the table creation query
@@ -300,15 +311,19 @@ mysqli_stmt_bind_param(
 if (!mysqli_stmt_execute($stmt)) {
     echo "<h2>Error</h2>";
     echo "<p>Failed to insert record.</p>";
+    echo "<p>Error message: " . mysqli_error($conn) . "</p>"; // Display the specific error message from MySQL
     exit;
 }
+
+// Store the auto-generated EOI number
+ $EOI_ID = mysqli_insert_id($conn);
 
 // Close the prepared statement
 mysqli_stmt_close($stmt);
 
 // Display success message
 echo "<h2>Success</h2>";
-echo "<p>EOI record has been submitted successfully.</p>";
+echo "<p>EOI record has been submitted successfully.Your EOI id is $EOI_ID</p>";
 
 // Close the database connection
 mysqli_close($conn);
