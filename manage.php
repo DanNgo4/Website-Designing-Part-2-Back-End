@@ -133,8 +133,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
             break;
     }
 }
-}
-
     // List EOIs for a particular position (given a job reference number)
     function listEOIsForPosition($conn, $jobReference)
     {
@@ -154,6 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
         } else {
             echo "<p class='error-message'>No EOIs found for position $jobReference.</p>";
         }
+    }
     // List EOIs for a particular applicant given their first name, last name, or both
     function listEOIsForApplicant($conn, $firstName, $lastName)
     {
@@ -185,11 +184,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
         $sql = "DELETE FROM EOI WHERE Job_Reference = '$jobReference'";
         $result = $conn->query($sql);
         if($result) {
-            echo "<p class='success-message'>EOIs for position $position deleted successfully.</p>";
+            echo "<p class='success-message'>EOIs for position $jobReference deleted successfully.</p>";
         } else {
-            echo "<p class='error-message'>Failed to delete EOIs for position $position.</p>";
+            echo "<p class='error-message'>Failed to delete EOIs for position $jobReference.</p>";
         }
-        }
+    }
     // Change the Status of an EOI
     function changeEOIStatus($conn, $EOinumber, $Status)
     {
@@ -204,8 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
         } else {
             echo "<p class='error-message'>Failed to change EOI status.</p>";
         }
-    }ß
-
+    }
     // Check the requested action and execute the appropriate query
     if (isset($_GET['action'])) {
         switch ($_GET['action']) {
