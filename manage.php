@@ -1,7 +1,3 @@
-<?php 
-session_start();
-if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
- ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +9,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
         <link rel="icon" type="image/x-icon" href="images/soe_logo_transparent_small.png">
 </head>
 <body>
-<?php
-include ("Header.inc");
-?>
+    
         <h1>EOI Management</h1>
         <h2>List EOIs</h2>
         <form action="manage.php" method="GET">
@@ -220,11 +214,3 @@ include ("Header.inc");
 <a href = "logout.php"><h1>LOGOUT</h1></a>
 </body>
 </html>
-<?php 
-}
-else{
-     header("Location: phpenhancements.php?error");
-     exit();
-}
-include 'Footer.inc'
- ?>
