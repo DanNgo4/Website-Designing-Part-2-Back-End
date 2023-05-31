@@ -233,19 +233,20 @@ if (empty($Phone_Number)) {
 
 // Create the EOI table if it doesn't exist
 $createTableQuery = "CREATE TABLE IF NOT EXISTS EOI (
-    EOI_ID INT AUTO_INCREMENT PRIMARY KEY,
-    Job_Reference VARCHAR(20),
-    First_Name VARCHAR(30),
-    Last_Name VARCHAR(30),
-    dob DATE,
-    Gender VARCHAR(10),
-    Street_Address VARCHAR(100),
-    Suburb_Town VARCHAR(50),
-    State VARCHAR(20),
-    Postcode VARCHAR(10),
-    Email_Address VARCHAR(50),
-    Phone_Number VARCHAR(20),
-    OtherSkills TEXT
+    `EOI_ID` INT AUTO_INCREMENT PRIMARY KEY,
+    `Job_Reference` VARCHAR(20),
+    `First_Name` VARCHAR(30),
+    `Last_Name` VARCHAR(30),
+    `dob` DATE,
+    `Gender` VARCHAR(10),
+    `Street_Address` VARCHAR(100),
+    `Suburb_Town` VARCHAR(50),
+    `State` VARCHAR(20),
+    `Postcode` VARCHAR(10),
+    `Email_Address` VARCHAR(50),
+    `Phone_Number` VARCHAR(20),
+    `OtherSkills` TEXT
+    `Status` enum('New','Current','Final') DEFAULT 'New'
 )";
 
 // Execute the table creation query
