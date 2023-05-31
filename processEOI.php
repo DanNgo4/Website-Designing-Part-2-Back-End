@@ -130,7 +130,7 @@ $Email_Address = sanitise_input($Email_Address);
 $Phone_Number = sanitise_input($Phone_Number);
 $OtherSkills = sanitise_input($OtherSkills);
 
-// Make sure all the required fields are filled; otherwise, display error message
+// Makes sure all the required fields are filled; otherwise, display error message
 if (empty($Job_Reference)) {
     $errMsg .= "<p>You must enter a job reference number.</p>";
 } elseif (!preg_match("/^[a-zA-Z0-9]{5}$/", $Job_Reference)) {
@@ -169,7 +169,7 @@ if (empty($dob)) {
 if (empty($Gender)) {
     $errMsg .= "<p>Gender is required.</p>";
 } else {
-    // Radio input has a value, you can proceed with further processing
+    //This ensures Radio input has a value, you can proceed with further processing
     $selectedGender = $_POST['Gender'];
 }
 
@@ -213,7 +213,7 @@ $postcodeState = array(
 // Check if the entered postcode matches the selected state
 if (isset($State) && isset($Postcode)) {
   $postcode = sanitise_input($Postcode);
-  $postcode = str_pad($postcode, 4, "0", STR_PAD_LEFT); // Pad the postcode with leading zeros if necessary
+  $postcode = str_pad($postcode, 4, "0", STR_PAD_LEFT); // this pads the postcode with leading zeros if necessary
 
   if (!isset($postcodeState[$postcode])) {
       $errMsg .= "<p>Invalid postcode.</p>";
