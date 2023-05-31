@@ -77,7 +77,7 @@
       <div id="section01">
           <!-- class="profiledp01" for pic in the motion picture effect  -->
           <section>
-            <a href="ProfileNina.html" target="_blank">
+            <a href="ProfileNina.php" target="_blank">
               <img  class="profiledp01" src="images/NinaPfp.jpg" alt="Nina Lam">
             </a>
               <h3>Nina</h3>
@@ -87,7 +87,7 @@
 
       <div id="section02">
           <section>
-            <a href="ProfileDaniel.html" target="_blank">
+            <a href="ProfileDaniel.php" target="_blank">
               <img class="profiledp01" src="images/DanielHindmarshProfilePhoto2.jpg" alt="Daniel Hindmarsh">
             </a>
               <h3>Daniel</h3>
@@ -97,7 +97,7 @@
       </div>
       <div id="section03">
           <section>
-            <a href="ProfileJugraj.html" target="_blank">
+            <a href="ProfileJugraj.php" target="_blank">
               <img class="profiledp01" src="images/JugrajPfp.jpg" alt="Jugraj Singh">
             </a>
               <h3>Jugraj</h3>
@@ -107,7 +107,7 @@
       </div>
       <div id="section04">
           <section>
-            <a href="ProfileDan.html" target="_blank">
+            <a href="ProfileDan.php" target="_blank">
               <img class="profiledp01" src="images/DanPfp.jpg" alt="Dan Ngo">
             </a>
               <h3>Dan</h3>
@@ -117,7 +117,7 @@
       </div>
       <div id="section05">
           <section>
-            <a href="ProfileMandeep.html" target="_blank">
+            <a href="ProfileMandeep.php" target="_blank">
               <img class="profiledp01" src="images/MandeepPfp.jpg" alt="Mandeep Kaur">
             </a>
               <h3>Mandeep</h3>
@@ -224,7 +224,7 @@
 
     </div>
 
-    <button onclick="window.location.href='apply.html'"
+    <button onclick="window.location.href='apply.php'"
             class="button button1">
       APPLY TO SOE
     </button>
@@ -246,7 +246,7 @@
 
                 </div>
                  <div class="cardfooter">
-                  <button class="btn" onclick="window.location.href='jobs.html'">
+                  <button class="btn" onclick="window.location.href='jobs.php'">
                       Apply
                   </button>
                   <button class="btn" onclick="window.location.href='jobdescriptionDevOps.html'">
@@ -269,7 +269,7 @@
 
                 </div>
                 <div class="cardfooter">
-                  <button class="btn" onclick="window.location.href='jobs.html'">
+                  <button class="btn" onclick="window.location.href='jobs.php'">
                     Apply
                   </button>
                   <button class="btn" onclick="window.location.href='jobdescriptionWD.html'">
