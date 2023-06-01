@@ -51,10 +51,6 @@ CREATE TABLE `EOI` (
 -- Dumping data for table `EOI`
 --
 
-INSERT INTO `EOI` (`EOInumber`, `Job_Reference`, `First_Name`, `Last_Name`, `DOB`, `Gender`, `Street_Address`, `Suburb_Town`, `State`, `Postcode`, `Email_Address`, `Phone_Number`, `Skill_01`, `Skill_02`, `Skill_03`, `OtherSkills`, `Status`) VALUES
-(1, '', '', '', '0000-00-00', 'Female', '', '', 'Please Select', '', '', '', NULL, NULL, NULL, '', 'New'),
-(2, 'JD123', 'Nina', 'Lam', '2004-08-19', 'Female', '24 Wakefield St', 'Hawthorn', 'VIC', '3122', 'ninayal198@gmail.com', '0405145303', NULL, NULL, NULL, '', 'New');
-
 --
 -- Indexes for dumped tables
 --
