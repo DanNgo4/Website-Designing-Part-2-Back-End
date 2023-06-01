@@ -180,7 +180,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"])) {
                 <td>" . $row["Job_Reference"] . "</td>
                 <td>" . $row["First_Name"] . "</td>
                 <td>" . $row["Last_Name"] . "</td>
-                <td>" . $row["dob"] . "</td>
+                <td>" . $row["DOB"] . "</td>
                 <td>" . $row["Gender"] . "</td>
                 <td>" . $row["Street_Address"] . "</td>
                 <td>" . $row["Suburb_Town"] . "</td>
